@@ -4,6 +4,7 @@
         <div id="kry" data-count="{{ __('{sel} dari {total} dipilih') }}" data-detail="{{ LaravelLocalization::localizeURL('sdm-dan-payroll/karyawan/detail') }}">
             <div class="kry-list" id="kryList">
                 <div class="kry-bar">
+                    <a class="btn1 sm" href="{{ LaravelLocalization::localizeURL('sdm-dan-payroll/karyawan/detail') }}?new=1&amp;edit=1"><span class="material-symbols-outlined">person_add</span>{{ __('Tambah Karyawan') }}</a>
                     <span class="kry-count" id="kryCount"></span>
                 </div>
                 <div class="kry-scroll">
@@ -19,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (\App\Support\KaryawanData::all() as $k)
+                            @foreach (\App\Models\Karyawan::orderBy('nik')->get() as $k)
                                 <tr data-id="{{ $k['nik'] }}" tabindex="0" title="{{ __('Klik ganda untuk membuka detail') }}">
                                     <td class="c-sel"><input type="checkbox" class="kry-chk" aria-label="{{ __('Pilih :nama', ['nama' => $k['nama']]) }}"></td>
                                     <td>{{ $k['nik'] }}</td>

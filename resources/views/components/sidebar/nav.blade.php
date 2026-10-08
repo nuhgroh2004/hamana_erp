@@ -1,5 +1,8 @@
 <nav id="nav">
-    @php $navPath = ltrim((string) parse_url(\LaravelLocalization::getNonLocalizedURL(request()->path()), PHP_URL_PATH), '/'); @endphp
+    @php
+        $navPath = ltrim((string) parse_url(\LaravelLocalization::getNonLocalizedURL(request()->path()), PHP_URL_PATH), '/');
+        $isSuper = auth()->user()?->role === 'superadmin';
+    @endphp
     <div class="grp{{ Str::is('dashboard/*', $navPath) ? ' open' : '' }}" data-g="{{ __('Dashboard') }}">
         <button type="button"><span class="material-symbols-outlined grp-icon">dashboard</span>{{ __('Dashboard') }}<span class="material-symbols-outlined grp-arrow">expand_more</span></button>
         <ul>
@@ -221,6 +224,7 @@
         <button type="button"><span class="material-symbols-outlined grp-icon">settings</span>{{ __('Pengaturan') }}<span class="material-symbols-outlined grp-arrow">expand_more</span></button>
         <ul>
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/umum') }}" class="{{ Str::is('pengaturan/umum', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">tune</span>{{ __('Umum') }}</a></li>
+            @if ($isSuper)
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/perusahaan-dan-cabang') }}" class="{{ Str::is('pengaturan/perusahaan-dan-cabang', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">apartment</span>{{ __('Perusahaan & Cabang') }}</a></li>
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/pengguna-dan-hak-akses') }}" class="{{ Str::is('pengaturan/pengguna-dan-hak-akses', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">manage_accounts</span>{{ __('Pengguna & Hak Akses') }}</a></li>
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/master-data') }}" class="{{ Str::is('pengaturan/master-data', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">database</span>{{ __('Master Data') }}</a></li>
@@ -229,6 +233,7 @@
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/alur-persetujuan') }}" class="{{ Str::is('pengaturan/alur-persetujuan', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">account_tree</span>{{ __('Alur Persetujuan') }}</a></li>
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/integrasi-dan-api') }}" class="{{ Str::is('pengaturan/integrasi-dan-api', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">api</span>{{ __('Integrasi & API') }}</a></li>
             <li><a href="{{ LaravelLocalization::localizeURL('pengaturan/backup') }}" class="{{ Str::is('pengaturan/backup', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">backup</span>{{ __('Backup') }}</a></li>
+            @endif
         </ul>
     </div>
 </nav>

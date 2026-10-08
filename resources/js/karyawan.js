@@ -1,5 +1,3 @@
-const KRY_STORE = 'hamana-kry';
-
 const KRY_COLS = {
     karier: ['tglMasuk', 'statusKerja', 'divisi', 'jabatan', 'atasan', 'lokasi'],
     pendidikan: ['jenjang', 'institusi', 'jurusan', 'lulus'],
@@ -8,20 +6,36 @@ const KRY_COLS = {
 
 const KRY_DOC_STATUS = ['Aktif', 'Akan Habis', 'Menunggu', 'Kedaluwarsa'];
 
-function kryReadStore() {
-    try {
-        return JSON.parse(localStorage.getItem(KRY_STORE) || '{}');
-    } catch (e) {
-        return {};
-    }
+function kryCsrf() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.content : '';
 }
 
-function kryWriteStore(store) {
-    try {
-        localStorage.setItem(KRY_STORE, JSON.stringify(store));
-    } catch (e) {
-        return;
-    }
+function kryLoad(root, nik) {
+    const base = root.dataset.loadUrl;
+    if (!base) return Promise.resolve(null);
+    return fetch(base + '/' + encodeURIComponent(nik), {
+        headers: { Accept: 'application/json' },
+    })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null);
+}
+
+function krySave(root, nik, payload) {
+    const base = root.dataset.saveUrl;
+    if (!base) return Promise.reject(new Error('no url'));
+    return fetch(base + '/' + encodeURIComponent(nik), {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'X-CSRF-TOKEN': kryCsrf(),
+        },
+        body: JSON.stringify(payload),
+    }).then((r) => {
+        if (!r.ok) throw new Error('save failed');
+        return r.json();
+    });
 }
 
 function kryChipClass(status) {
@@ -56,15 +70,6 @@ function initKryList() {
     const detailUrl = root.dataset.detail;
     const countTpl = root.dataset.count || '{sel} dari {total} dipilih';
     const rows = Array.from(list.querySelectorAll('tr[data-id]'));
-    const store = kryReadStore();
-
-    rows.forEach((row) => {
-        const vals = (store[row.dataset.id] || {}).values;
-        if (!vals) return;
-        if (vals.nama) row.querySelector('.c-nama').textContent = vals.nama;
-        if (vals.divisi) row.querySelector('.c-divisi').textContent = vals.divisi;
-        if (vals.jabatan) row.querySelector('.c-jabatan').textContent = vals.jabatan;
-    });
 
     function updateCount() {
         const sel = rows.filter((r) => r.querySelector('.kry-chk').checked).length;
@@ -118,6 +123,7 @@ function initKryDetail() {
     const nik = root.dataset.nik;
     const L = {
         msgSaved: root.dataset.msgSaved || 'Perubahan tersimpan.',
+        msgErr: root.dataset.msgErr || 'Gagal menyimpan.',
         msgRequired: root.dataset.msgRequired || 'Nama, divisi, dan jabatan wajib diisi.',
         empty: root.dataset.empty || 'Belum ada data',
         phKey: root.dataset.phKey || 'Nama kolom',
@@ -374,11 +380,6 @@ function initKryDetail() {
         dataFields.forEach((i) => {
             i.value = vals[i.dataset.f];
         });
-        root.querySelector('.kry-name').textContent = vals.nama;
-        const chip = root.querySelector('.kry-chip');
-        chip.textContent = skMap[vals.statusKerja] || vals.statusKerja || '';
-        chip.className = 'chip kry-chip ' + kryChipClass(vals.statusKerja);
-        recSecs.forEach((sec) => syncDocChips(sec));
 
         const extra = {};
         secs.forEach((s) => {
@@ -389,21 +390,30 @@ function initKryDetail() {
             if (items.length) extra[s.dataset.sec] = items;
         });
 
-        const store = kryReadStore();
-        store[nik] = {
+        const payload = {
             values: vals,
             extra: extra,
             karier: bySec.karier || [],
             pendidikan: bySec.pendidikan || [],
             dokumen: bySec.dokumen || [],
         };
-        kryWriteStore(store);
 
-        stopEdit();
-        snap = null;
-        msg(L.msgSaved);
-        clearTimeout(timer);
-        timer = setTimeout(() => msg(''), 3000);
+        krySave(root, nik, payload)
+            .then(() => {
+                root.querySelector('.kry-name').textContent = vals.nama;
+                const chip = root.querySelector('.kry-chip');
+                chip.textContent = skMap[vals.statusKerja] || vals.statusKerja || '';
+                chip.className = 'chip kry-chip ' + kryChipClass(vals.statusKerja);
+                recSecs.forEach((sec) => syncDocChips(sec));
+                stopEdit();
+                snap = null;
+                msg(L.msgSaved);
+                clearTimeout(timer);
+                timer = setTimeout(() => msg(''), 3000);
+            })
+            .catch(() => {
+                msg(L.msgErr, true);
+            });
     }
 
     tabs.forEach((t) => t.addEventListener('click', () => switchTab(t.dataset.tab)));
@@ -439,40 +449,44 @@ function initKryDetail() {
         else if (b.classList.contains('kry-cancel')) cancelEdit();
     });
 
-    const rec = kryReadStore()[nik];
-    if (rec) {
-        const byF = Object.fromEntries(dataFields.map((i) => [i.dataset.f, i]));
-        Object.entries(rec.values || {}).forEach(([f, v]) => {
-            if (byF[f]) byF[f].value = v;
-        });
-        Object.entries(rec.extra || {}).forEach(([sec, items]) => {
-            const s = secs.find((x) => x.dataset.sec === sec);
-            if (s) items.forEach((it) => addField(s, it.key, it.val));
-        });
-        if (rec.values && rec.values.nama) root.querySelector('.kry-name').textContent = rec.values.nama;
-        if (rec.values && rec.values.statusKerja) {
-            const chip = root.querySelector('.kry-chip');
-            chip.textContent = skMap[rec.values.statusKerja] || rec.values.statusKerja;
-            chip.className = 'chip kry-chip ' + kryChipClass(rec.values.statusKerja);
+    function applyRec(rec) {
+        if (rec) {
+            const byF = Object.fromEntries(dataFields.map((i) => [i.dataset.f, i]));
+            Object.entries(rec.values || {}).forEach(([f, v]) => {
+                if (byF[f]) byF[f].value = v || '';
+            });
+            Object.entries(rec.extra || {}).forEach(([sec, items]) => {
+                const s = secs.find((x) => x.dataset.sec === sec);
+                if (s) items.forEach((it) => addField(s, it.key, it.val));
+            });
+            if (rec.values && rec.values.nama) root.querySelector('.kry-name').textContent = rec.values.nama;
+            if (rec.values && rec.values.statusKerja) {
+                const chip = root.querySelector('.kry-chip');
+                chip.textContent = skMap[rec.values.statusKerja] || rec.values.statusKerja;
+                chip.className = 'chip kry-chip ' + kryChipClass(rec.values.statusKerja);
+            }
         }
+
+        recSecs.forEach((sec) => {
+            const key = sec.dataset.sec;
+            let rows = null;
+            if (rec && Array.isArray(rec[key])) {
+                rows = rec[key];
+            } else if (rec && rec.values) {
+                if (key === 'karier' && rec.values.divisi) rows = [kryPick(KRY_COLS.karier, rec.values)];
+                if (key === 'pendidikan' && rec.values.institusi) rows = [kryPick(KRY_COLS.pendidikan, rec.values)];
+            }
+            if (!rows) rows = Array.isArray(seed[key]) ? seed[key] : [];
+            clearRows(sec);
+            rows.forEach((o) => addRow(sec, o));
+            syncEmpty(sec);
+        });
     }
 
-    recSecs.forEach((sec) => {
-        const key = sec.dataset.sec;
-        let rows = null;
-        if (rec && Array.isArray(rec[key])) {
-            rows = rec[key];
-        } else if (rec && rec.values) {
-            if (key === 'karier' && rec.values.divisi) rows = [kryPick(KRY_COLS.karier, rec.values)];
-            if (key === 'pendidikan' && rec.values.institusi) rows = [kryPick(KRY_COLS.pendidikan, rec.values)];
-        }
-        if (!rows) rows = Array.isArray(seed[key]) ? seed[key] : [];
-        clearRows(sec);
-        rows.forEach((o) => addRow(sec, o));
-        syncEmpty(sec);
+    kryLoad(root, nik).then((rec) => {
+        applyRec(rec);
+        if (new URLSearchParams(window.location.search).get('edit') === '1') startEdit();
     });
-
-    if (new URLSearchParams(window.location.search).get('edit') === '1') startEdit();
 }
 
 function initKaryawan() {

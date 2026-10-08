@@ -2,22 +2,48 @@
 
 namespace Database\Seeders;
 
+use App\Models\Karyawan;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Support\KaryawanData;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::updateOrCreate(['email' => 'superadmin@hamana.local'], [
+            'name' => 'Super Admin',
+            'password' => 'superadmin123',
+            'role' => 'superadmin',
+            'locale' => 'id',
         ]);
+
+        User::updateOrCreate(['email' => 'user@hamana.local'], [
+            'name' => 'User Biasa',
+            'password' => 'user123',
+            'role' => 'user',
+            'locale' => 'id',
+        ]);
+
+        foreach (KaryawanData::all() as $k) {
+            Karyawan::updateOrCreate(['nik' => $k['nik']], [
+                'nama' => $k['nama'],
+                'ktp' => $k['ktp'],
+                'tmpLahir' => $k['tmpLahir'],
+                'tglLahir' => $k['tglLahir'],
+                'jk' => $k['jk'],
+                'kawin' => $k['kawin'],
+                'alamat' => $k['alamat'],
+                'hp' => $k['hp'],
+                'email' => $k['email'],
+                'divisi' => $k['divisi'],
+                'jabatan' => $k['jabatan'],
+                'statusKerja' => $k['statusKerja'],
+                'extra' => [],
+                'karier' => $k['karier'] ?? [],
+                'pendidikan' => $k['pendidikan'] ?? [],
+                'dokumen' => $k['dokumen'] ?? [],
+            ]);
+        }
     }
 }

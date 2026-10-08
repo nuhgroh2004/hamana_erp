@@ -259,6 +259,16 @@ nav::-webkit-scrollbar {
     border-color: var(--teal);
 }
 
+.foot-btns {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.foot form {
+    display: flex;
+}
+
 .content {
     flex: 1;
     min-width: 0;

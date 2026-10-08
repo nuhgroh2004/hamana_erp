@@ -2,8 +2,11 @@ function initUmum() {
     const sel = document.getElementById('setLang');
     if (!sel) return;
 
+    const form = sel.closest('form');
+    if (!form) return;
+
     sel.addEventListener('change', () => {
-        if (sel.value) window.location.href = sel.value;
+        form.submit();
     });
 }
 

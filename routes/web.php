@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\UmumController;
+use App\Http\Middleware\ApplyUserLocale;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
@@ -7,7 +11,17 @@ use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [LaravelLocalizationRedirectFilter::class, LaravelLocalizationViewPath::class],
+    'middleware' => [LaravelLocalizationRedirectFilter::class, LaravelLocalizationViewPath::class, 'guest'],
+], function () {
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+});
+
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['auth', ApplyUserLocale::class, LaravelLocalizationRedirectFilter::class, LaravelLocalizationViewPath::class],
 ], function () {
     Route::get('/', function () {
         return view('erp');
@@ -110,6 +124,8 @@ Route::group([
     Route::view('/proyek/biaya-proyek', 'proyek.biaya-proyek.BiayaProyek')->name('menu.proyek.biaya-proyek');
     Route::view('/sdm-dan-payroll/karyawan', 'sdm-dan-payroll.karyawan.Karyawan')->name('menu.sdm-dan-payroll.karyawan');
     Route::view('/sdm-dan-payroll/karyawan/detail', 'sdm-dan-payroll.karyawan.detail.Detail')->name('karyawan.detail');
+    Route::get('/sdm-dan-payroll/karyawan/data/{nik}', [KaryawanController::class, 'show'])->name('karyawan.data');
+    Route::put('/sdm-dan-payroll/karyawan/data/{nik}', [KaryawanController::class, 'save'])->name('karyawan.save');
     Route::view('/sdm-dan-payroll/absensi-dan-shift', 'sdm-dan-payroll.absensi-dan-shift.AbsensiDanShift')->name('menu.sdm-dan-payroll.absensi-dan-shift');
     Route::view('/sdm-dan-payroll/lembur', 'sdm-dan-payroll.lembur.Lembur')->name('menu.sdm-dan-payroll.lembur');
     Route::view('/sdm-dan-payroll/cuti-dan-izin', 'sdm-dan-payroll.cuti-dan-izin.CutiDanIzin')->name('menu.sdm-dan-payroll.cuti-dan-izin');
@@ -137,12 +153,15 @@ Route::group([
     Route::view('/laporan-dan-analitik/laporan-kualitas', 'laporan-dan-analitik.laporan-kualitas.LaporanKualitas')->name('menu.laporan-dan-analitik.laporan-kualitas');
     Route::view('/laporan-dan-analitik/laporan-custom', 'laporan-dan-analitik.laporan-custom.LaporanCustom')->name('menu.laporan-dan-analitik.laporan-custom');
     Route::view('/pengaturan/umum', 'pengaturan.umum.Umum')->name('menu.pengaturan.umum');
-    Route::view('/pengaturan/perusahaan-dan-cabang', 'pengaturan.perusahaan-dan-cabang.PerusahaanDanCabang')->name('menu.pengaturan.perusahaan-dan-cabang');
-    Route::view('/pengaturan/pengguna-dan-hak-akses', 'pengaturan.pengguna-dan-hak-akses.PenggunaDanHakAkses')->name('menu.pengaturan.pengguna-dan-hak-akses');
-    Route::view('/pengaturan/master-data', 'pengaturan.master-data.MasterData')->name('menu.pengaturan.master-data');
-    Route::view('/pengaturan/satuan-ukur', 'pengaturan.satuan-ukur.SatuanUkur')->name('menu.pengaturan.satuan-ukur');
-    Route::view('/pengaturan/penomoran-dokumen', 'pengaturan.penomoran-dokumen.PenomoranDokumen')->name('menu.pengaturan.penomoran-dokumen');
-    Route::view('/pengaturan/alur-persetujuan', 'pengaturan.alur-persetujuan.AlurPersetujuan')->name('menu.pengaturan.alur-persetujuan');
-    Route::view('/pengaturan/integrasi-dan-api', 'pengaturan.integrasi-dan-api.IntegrasiDanAPI')->name('menu.pengaturan.integrasi-dan-api');
-    Route::view('/pengaturan/backup', 'pengaturan.backup.Backup')->name('menu.pengaturan.backup');
+    Route::post('/pengaturan/umum/locale', [UmumController::class, 'setLocale'])->name('pengaturan.umum.locale');
+    Route::middleware('role:superadmin')->group(function () {
+        Route::view('/pengaturan/perusahaan-dan-cabang', 'pengaturan.perusahaan-dan-cabang.PerusahaanDanCabang')->name('menu.pengaturan.perusahaan-dan-cabang');
+        Route::view('/pengaturan/pengguna-dan-hak-akses', 'pengaturan.pengguna-dan-hak-akses.PenggunaDanHakAkses')->name('menu.pengaturan.pengguna-dan-hak-akses');
+        Route::view('/pengaturan/master-data', 'pengaturan.master-data.MasterData')->name('menu.pengaturan.master-data');
+        Route::view('/pengaturan/satuan-ukur', 'pengaturan.satuan-ukur.SatuanUkur')->name('menu.pengaturan.satuan-ukur');
+        Route::view('/pengaturan/penomoran-dokumen', 'pengaturan.penomoran-dokumen.PenomoranDokumen')->name('menu.pengaturan.penomoran-dokumen');
+        Route::view('/pengaturan/alur-persetujuan', 'pengaturan.alur-persetujuan.AlurPersetujuan')->name('menu.pengaturan.alur-persetujuan');
+        Route::view('/pengaturan/integrasi-dan-api', 'pengaturan.integrasi-dan-api.IntegrasiDanAPI')->name('menu.pengaturan.integrasi-dan-api');
+        Route::view('/pengaturan/backup', 'pengaturan.backup.Backup')->name('menu.pengaturan.backup');
+    });
 });
