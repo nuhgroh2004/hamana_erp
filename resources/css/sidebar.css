@@ -226,8 +226,10 @@ nav::-webkit-scrollbar {
 .content {
     flex: 1;
     min-width: 0;
-    padding: 32px;
+    padding: 0;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .crumb {
@@ -248,6 +250,7 @@ h1 {
     padding: 48px 24px;
     text-align: center;
     color: var(--mut);
+    flex: 1;
 }
 
 #menuBtn {
@@ -274,9 +277,5 @@ h1 {
         color: var(--ink);
         padding: 6px 10px;
         cursor: pointer;
-    }
-
-    .content {
-        padding: 20px;
     }
 }
