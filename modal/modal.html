@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HAMANA WORKS INDONESIA ERP</title>
+<style>
+:root{--bg:#f9fafb;--side:#ffffff;--ink:#212529;--mut:#6c757d;--line:#d8dadd;--acc:#714b67;--accbg:#f1e8ef;--teal:#017e84;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1d21;--side:#262a30;--ink:#e9ecef;--mut:#9aa1a9;--line:#3a3f46;--accbg:#3a2a36;--acc:#b78aab}}
+:root[data-theme="dark"]{--bg:#1b1d21;--side:#262a30;--ink:#e9ecef;--mut:#9aa1a9;--line:#3a3f46;--accbg:#3a2a36;--acc:#b78aab}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 Roboto,"Odoo Unicode Support Noto","Segoe UI",Helvetica,Arial,sans-serif;display:flex}
+aside{width:272px;flex:none;height:100%;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column}
+.brand{padding:12px 16px;background:#714b67;color:#fff;display:flex;gap:10px;align-items:center}
+.logo{width:30px;height:30px;background:#fff;color:#714b67;display:grid;place-items:center;font:700 16px Roboto,sans-serif;border-radius:50%}
+.brand b{font:500 16px Roboto,sans-serif;display:block}
+.brand small{color:#e6d5e1;font-size:11px}
+.search{padding:10px 12px;border-bottom:1px solid var(--line)}
+.search input{width:100%;padding:7px 9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;outline:none}
+.search input:focus{border-color:var(--acc)}
+nav{flex:1;overflow-y:auto;padding:6px 0}
+.grp>button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:none;border:0;color:var(--ink);font:500 13px inherit;color:var(--acc);cursor:pointer;text-align:left}
+.grp>button:hover{background:rgba(0,0,0,.04)}
+.grp>button i{font-style:normal;color:var(--mut);font-weight:400}
+.grp ul{list-style:none;display:none;border-left:1px solid var(--line);margin:0 0 6px 20px}
+.grp.open ul{display:block}
+.grp li a{display:block;padding:5px 14px;color:var(--mut);text-decoration:none;cursor:pointer}
+.grp li a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.grp li a.on{color:var(--acc);background:var(--accbg);border-left:3px solid var(--acc);margin-left:-1px;font-weight:600}
+.foot{padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:12px}
+.foot button:hover{background:var(--teal);color:#fff;border-color:var(--teal)}.foot button{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:3px 8px;cursor:pointer;font:inherit;font-size:12px}
+main{flex:1;min-width:0;padding:32px;overflow:auto}
+.crumb{color:var(--mut);font-size:12px;margin-bottom:6px}
+h1{font:500 24px Roboto,sans-serif;margin-bottom:20px}
+.box{background:var(--side);border:1px solid var(--line);border-top:3px solid var(--teal);padding:48px 24px;text-align:center;color:var(--mut)}
+#menuBtn{display:none}
+@media(max-width:760px){
+aside{position:fixed;z-index:5;left:-280px;transition:left .15s}
+aside.show{left:0}
+#menuBtn{display:inline-block;margin-bottom:16px;border:1px solid var(--line);background:var(--side);color:var(--ink);padding:6px 10px;cursor:pointer}
+main{padding:20px}}
+</style>
+</head>
+<body>
+<aside id="side">
+  <div class="brand"><div class="logo">H</div><div><b>HAMANA ERP</b></div></div>
+  <div class="search"><input id="q" placeholder="Cari menu…"></div>
+  <nav id="nav"></nav>
+  <div class="foot"><span>v1.0 · Admin</span><button id="theme">Tema</button></div>
+</aside>
+<main>
+  <button id="menuBtn">☰ Menu</button>
+  <div class="crumb" id="crumb">Beranda</div>
+  <h1 id="title">Pilih menu di sidebar</h1>
+  <div class="box">Area konten — halaman untuk setiap menu belum dibuat.</div>
+</main>
+<script>
+const M=[
+["Dashboard",["Ringkasan Eksekutif","Dashboard Produksi","Dashboard Penjualan","Dashboard Keuangan"]],
+["Penjualan & CRM",["Lead & Peluang","Pelanggan / Dealer","Penawaran (Quotation)","Sales Order","Kontrak Unit","Price List","Komisi Sales","Laporan Penjualan"]],
+["Engineering & Desain",["Spesifikasi Car Carrier","Gambar Teknik","Bill of Materials (BOM)","Engineering Change (ECN)","Perhitungan Beban & Kekuatan","Dokumen Rancang Bangun","Library Komponen"]],
+["Unit & Chassis",["Penerimaan Chassis","Registrasi Unit (VIN)","Job Card Unit","Status Pengerjaan","Serah Terima Unit","Surat Uji Tipe / SRUT","KIR & STNK","Garansi Unit"]],
+["Perencanaan Produksi",["Master Production Schedule","Perencanaan Kapasitas","Kebutuhan Material (MRP)","Jadwal Produksi","Backlog Order"]],
+["Manufaktur",["Manufacturing Order","Work Order","Work Center","Routing / Proses","Potong & Bending Plat","Pengelasan","Perakitan Deck & Ramp","Sistem Hidrolik","Pengecatan","Finishing & Aksesoris","Subkontrak","Scrap & Rework"]],
+["Quality Control",["Inspeksi Material Masuk","Inspeksi Proses (IPQC)","Inspeksi Las (WPS/NDT)","Uji Hidrolik & Beban","Final Inspection","Non-Conformance (NCR)","Tindakan Korektif (CAPA)","Sertifikat & Kalibrasi"]],
+["Pembelian",["Permintaan Pembelian (PR)","RFQ","Purchase Order","Vendor / Supplier","Evaluasi Vendor","Kontrak Subkon","Laporan Pembelian"]],
+["Inventori & Gudang",["Stok Barang","Penerimaan Barang","Pengeluaran Barang","Transfer Antar Gudang","Lot / Serial Number","Stock Opname","Lokasi & Rak","Landed Cost","Valuasi Persediaan"]],
+["Maintenance",["Daftar Mesin & Alat","Preventive Maintenance","Corrective Maintenance","Permintaan Perbaikan","Sparepart","Kalibrasi Alat"]],
+["Logistik & Pengiriman",["Surat Jalan","Jadwal Pengiriman","Armada & Driver","Ekspedisi","Pengantaran Unit"]],
+["Akuntansi & Keuangan",["Jurnal Umum","Buku Besar","Hutang (AP)","Piutang (AR)","Kas & Bank","Faktur Pajak / e-Faktur","Costing Produksi / HPP","Anggaran (Budget)","Laporan Keuangan"]],
+["Aset Tetap",["Daftar Aset","Penyusutan","Mutasi & Disposal"]],
+["Proyek",["Daftar Proyek","Tugas & Timeline","Timesheet","Biaya Proyek"]],
+["SDM & Payroll",["Karyawan","Absensi & Shift","Lembur","Cuti & Izin","Payroll","BPJS & Pajak PPh21","Rekrutmen","Pelatihan & Sertifikasi Welder","Penilaian Kinerja"]],
+["K3 & Lingkungan",["Insiden & Kecelakaan Kerja","Inspeksi K3","APD","Limbah B3","Izin Kerja Panas"]],
+["After Sales",["Klaim Garansi","Servis & Perbaikan","Tiket Keluhan","Suku Cadang Pelanggan"]],
+["Dokumen & Legal",["Dokumen Perusahaan","Perizinan","Kontrak","Arsip Digital"]],
+["Laporan & Analitik",["Laporan Produksi","Laporan Biaya","Laporan Stok","Laporan Kualitas","Laporan Custom"]],
+["Pengaturan",["Perusahaan & Cabang","Pengguna & Hak Akses","Master Data","Satuan Ukur","Penomoran Dokumen","Alur Persetujuan","Integrasi & API","Backup"]]
+];
+const nav=document.getElementById('nav'),q=document.getElementById('q');
+function render(f=''){
+  nav.innerHTML='';
+  M.forEach(([g,items],i)=>{
+    const list=items.filter(x=>!f||x.toLowerCase().includes(f)||g.toLowerCase().includes(f));
+    if(!list.length)return;
+    const d=document.createElement('div');d.className='grp'+((f||g===cur[0])?' open':'');
+    d.innerHTML=`<button>${g}<i>${f||g===cur[0]?'−':'+'}</i></button><ul>${list.map(x=>`<li><a class="${x===cur[1]?'on':''}" data-g="${g}">${x}</a></li>`).join('')}</ul>`;
+    d.firstChild.onclick=()=>{d.classList.toggle('open');d.firstChild.lastChild.textContent=d.classList.contains('open')?'−':'+'};
+    d.querySelectorAll('a').forEach(a=>a.onclick=()=>{cur=[a.dataset.g,a.textContent];
+      crumb.textContent=cur[0];title.textContent=cur[1];
+      document.querySelectorAll('nav a.on').forEach(e=>e.classList.remove('on'));a.classList.add('on');
+      side.classList.remove('show')});
+    nav.appendChild(d);
+  });
+}
+let cur=["Dashboard",""];
+render();
+q.oninput=()=>render(q.value.trim().toLowerCase());
+menuBtn.onclick=()=>side.classList.toggle('show');
+theme.onclick=()=>{const r=document.documentElement;const d=getComputedStyle(r).getPropertyValue('--bg').trim()==='#1b1d21';r.dataset.theme=d?'light':'dark'};
+</script>
+</body>
+</html>
