@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Corrective Maintenance'">
+<x-layouts.app :title="__('Corrective Maintenance')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Corrective Maintenance</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Corrective Maintenance') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

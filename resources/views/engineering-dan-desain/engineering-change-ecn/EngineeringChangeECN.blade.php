@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Engineering Change (ECN)'">
+<x-layouts.app :title="__('Engineering Change (ECN)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Engineering Change (ECN)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Engineering Change (ECN)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Kebutuhan Material (MRP)'">
+<x-layouts.app :title="__('Kebutuhan Material (MRP)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Kebutuhan Material (MRP)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Kebutuhan Material (MRP)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

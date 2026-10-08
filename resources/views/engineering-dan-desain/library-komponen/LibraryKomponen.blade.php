@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Library Komponen'">
+<x-layouts.app :title="__('Library Komponen')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Library Komponen</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Library Komponen') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Non-Conformance (NCR)'">
+<x-layouts.app :title="__('Non-Conformance (NCR)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Non-Conformance (NCR)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Non-Conformance (NCR)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Stock Opname'">
+<x-layouts.app :title="__('Stock Opname')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Stock Opname</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Stock Opname') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

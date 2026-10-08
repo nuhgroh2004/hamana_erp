@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Master Data'">
+<x-layouts.app :title="__('Master Data')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Master Data</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Master Data') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

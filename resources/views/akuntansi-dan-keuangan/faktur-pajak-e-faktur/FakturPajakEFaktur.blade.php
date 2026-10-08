@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Faktur Pajak / e-Faktur'">
+<x-layouts.app :title="__('Faktur Pajak / e-Faktur')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Faktur Pajak / e-Faktur</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Faktur Pajak / e-Faktur') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

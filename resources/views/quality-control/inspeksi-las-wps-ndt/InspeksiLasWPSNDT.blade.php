@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Inspeksi Las (WPS/NDT)'">
+<x-layouts.app :title="__('Inspeksi Las (WPS/NDT)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Inspeksi Las (WPS/NDT)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Inspeksi Las (WPS/NDT)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

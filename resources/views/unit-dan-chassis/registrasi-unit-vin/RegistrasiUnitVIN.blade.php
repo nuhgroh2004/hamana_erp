@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Registrasi Unit (VIN)'">
+<x-layouts.app :title="__('Registrasi Unit (VIN)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Registrasi Unit (VIN)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Registrasi Unit (VIN)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

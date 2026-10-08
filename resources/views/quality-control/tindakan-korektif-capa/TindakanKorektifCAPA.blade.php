@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Tindakan Korektif (CAPA)'">
+<x-layouts.app :title="__('Tindakan Korektif (CAPA)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Tindakan Korektif (CAPA)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Tindakan Korektif (CAPA)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

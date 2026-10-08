@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Master Production Schedule'">
+<x-layouts.app :title="__('Master Production Schedule')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Master Production Schedule</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Master Production Schedule') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

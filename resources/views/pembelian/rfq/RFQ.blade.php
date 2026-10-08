@@ -1,6 +1,6 @@
-<x-layouts.app :title="'RFQ'">
+<x-layouts.app :title="__('RFQ')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>RFQ</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('RFQ') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

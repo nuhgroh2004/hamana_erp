@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Bill of Materials (BOM)'">
+<x-layouts.app :title="__('Bill of Materials (BOM)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Bill of Materials (BOM)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Bill of Materials (BOM)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

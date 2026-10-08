@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Integrasi & API'">
+<x-layouts.app :title="__('Integrasi & API')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Integrasi &amp; API</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Integrasi & API') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

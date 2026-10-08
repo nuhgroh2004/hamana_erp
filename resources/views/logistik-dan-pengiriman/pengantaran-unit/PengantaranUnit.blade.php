@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Pengantaran Unit'">
+<x-layouts.app :title="__('Pengantaran Unit')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Pengantaran Unit</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Pengantaran Unit') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Uji Hidrolik & Beban'">
+<x-layouts.app :title="__('Uji Hidrolik & Beban')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Uji Hidrolik &amp; Beban</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Uji Hidrolik & Beban') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

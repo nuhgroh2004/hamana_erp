@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Permintaan Pembelian (PR)'">
+<x-layouts.app :title="__('Permintaan Pembelian (PR)')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Permintaan Pembelian (PR)</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Permintaan Pembelian (PR)') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

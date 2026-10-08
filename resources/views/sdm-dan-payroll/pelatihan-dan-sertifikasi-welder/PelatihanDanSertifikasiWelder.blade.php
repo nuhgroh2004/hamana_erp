@@ -1,6 +1,6 @@
-<x-layouts.app :title="'Pelatihan & Sertifikasi Welder'">
+<x-layouts.app :title="__('Pelatihan & Sertifikasi Welder')">
     <x-sidebar />
     <x-content>
-        <p>Halaman <strong>Pelatihan &amp; Sertifikasi Welder</strong> belum dikembangkan.</p>
+        <p>{!! __('Halaman :page belum dikembangkan', ['page' => '<strong>' . __('Pelatihan & Sertifikasi Welder') . '</strong>']) !!}</p>
     </x-content>
 </x-layouts.app>

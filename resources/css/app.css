@@ -2,6 +2,7 @@
 @import '@material-symbols/font-400/outlined.css';
 @import './sidebar.css';
 @import './karyawan.css';
+@import './umum.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

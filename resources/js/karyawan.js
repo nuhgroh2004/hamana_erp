@@ -54,6 +54,7 @@ function initKryList() {
     if (!root || !list || !countEl || !allChk) return;
 
     const detailUrl = root.dataset.detail;
+    const countTpl = root.dataset.count || '{sel} dari {total} dipilih';
     const rows = Array.from(list.querySelectorAll('tr[data-id]'));
     const store = kryReadStore();
 
@@ -67,7 +68,7 @@ function initKryList() {
 
     function updateCount() {
         const sel = rows.filter((r) => r.querySelector('.kry-chk').checked).length;
-        countEl.textContent = sel + ' dari ' + rows.length + ' dipilih';
+        countEl.textContent = countTpl.replace('{sel}', sel).replace('{total}', rows.length);
         allChk.checked = rows.length > 0 && sel === rows.length;
         allChk.indeterminate = sel > 0 && sel < rows.length;
     }
@@ -115,6 +116,19 @@ function initKryDetail() {
     if (!root) return;
 
     const nik = root.dataset.nik;
+    const L = {
+        msgSaved: root.dataset.msgSaved || 'Perubahan tersimpan.',
+        msgRequired: root.dataset.msgRequired || 'Nama, divisi, dan jabatan wajib diisi.',
+        empty: root.dataset.empty || 'Belum ada data',
+        phKey: root.dataset.phKey || 'Nama kolom',
+        phVal: root.dataset.phVal || 'Isi data',
+        delCol: root.dataset.delCol || 'Hapus kolom',
+        delRow: root.dataset.delRow || 'Hapus baris',
+    };
+    let docMap = {};
+    let skMap = {};
+    try { docMap = JSON.parse(root.dataset.docStatus || '{}'); } catch (e) { docMap = {}; }
+    try { skMap = JSON.parse(root.dataset.statusKerja || '{}'); } catch (e) { skMap = {}; }
     const form = root.querySelector('.kry-form');
     const secs = Array.from(root.querySelectorAll('.kry-sec'));
     const tabs = Array.from(root.querySelectorAll('.kry-tab'));
@@ -152,7 +166,10 @@ function initKryDetail() {
         if (!grid) return;
         const wrap = document.createElement('div');
         wrap.className = 'fld fld-extra';
-        wrap.innerHTML = '<div class="fld-keyrow"><input class="fld-key" type="text" placeholder="Nama kolom"><button type="button" class="fld-del" aria-label="Hapus kolom"><span class="material-symbols-outlined">close</span></button></div><input class="fld-val" type="text" placeholder="Isi data">';
+        wrap.innerHTML = '<div class="fld-keyrow"><input class="fld-key" type="text"><button type="button" class="fld-del"><span class="material-symbols-outlined">close</span></button></div><input class="fld-val" type="text">';
+        wrap.querySelector('.fld-key').placeholder = L.phKey;
+        wrap.querySelector('.fld-del').setAttribute('aria-label', L.delCol);
+        wrap.querySelector('.fld-val').placeholder = L.phVal;
         wrap.querySelector('.fld-key').value = key || '';
         wrap.querySelector('.fld-val').value = val || '';
         const ro = !editing();
@@ -197,20 +214,20 @@ function initKryDetail() {
                 const val = obj[col] || 'Aktif';
                 const chip = document.createElement('span');
                 chip.className = 'chip ' + kryDocChip(val);
-                chip.textContent = val;
+                chip.textContent = docMap[val] || val;
                 const sel = document.createElement('select');
                 sel.className = 'doc-sel';
                 sel.dataset.c = 'status';
                 KRY_DOC_STATUS.forEach((o) => {
                     const opt = document.createElement('option');
                     opt.value = o;
-                    opt.textContent = o;
+                    opt.textContent = docMap[o] || o;
                     sel.appendChild(opt);
                 });
                 if (KRY_DOC_STATUS.indexOf(val) === -1) {
                     const opt = document.createElement('option');
                     opt.value = val;
-                    opt.textContent = val;
+                    opt.textContent = docMap[val] || val;
                     sel.appendChild(opt);
                 }
                 sel.value = val;
@@ -224,7 +241,7 @@ function initKryDetail() {
 
         const act = document.createElement('td');
         act.className = 'c-act';
-        act.innerHTML = '<button type="button" class="fld-del" aria-label="Hapus baris"><span class="material-symbols-outlined">close</span></button>';
+        act.innerHTML = '<button type="button" class="fld-del" aria-label="' + L.delRow + '"><span class="material-symbols-outlined">close</span></button>';
         tr.appendChild(act);
 
         tbody.appendChild(tr);
@@ -261,7 +278,7 @@ function initKryDetail() {
             tr.className = 'kry-empty';
             const td = document.createElement('td');
             td.colSpan = KRY_COLS[sec.dataset.sec].length + 1;
-            td.textContent = 'Belum ada data';
+            td.textContent = L.empty;
             tr.appendChild(td);
             tbody.appendChild(tr);
         }
@@ -272,7 +289,7 @@ function initKryDetail() {
             const sel = tr.querySelector('.doc-sel');
             const chip = tr.querySelector('.doc-st .chip');
             if (!sel || !chip) return;
-            chip.textContent = sel.value;
+            chip.textContent = docMap[sel.value] || sel.value;
             chip.className = 'chip ' + kryDocChip(sel.value);
         });
     }
@@ -344,7 +361,7 @@ function initKryDetail() {
         Object.assign(vals, lastRow(bySec.pendidikan), lastRow(bySec.karier));
 
         if (!vals.nama || !vals.divisi || !vals.jabatan) {
-            msg('Nama, divisi, dan jabatan wajib diisi.', true);
+            msg(L.msgRequired, true);
             return;
         }
 
@@ -359,7 +376,7 @@ function initKryDetail() {
         });
         root.querySelector('.kry-name').textContent = vals.nama;
         const chip = root.querySelector('.kry-chip');
-        chip.textContent = vals.statusKerja || '';
+        chip.textContent = skMap[vals.statusKerja] || vals.statusKerja || '';
         chip.className = 'chip kry-chip ' + kryChipClass(vals.statusKerja);
         recSecs.forEach((sec) => syncDocChips(sec));
 
@@ -384,7 +401,7 @@ function initKryDetail() {
 
         stopEdit();
         snap = null;
-        msg('Perubahan tersimpan.');
+        msg(L.msgSaved);
         clearTimeout(timer);
         timer = setTimeout(() => msg(''), 3000);
     }
@@ -435,7 +452,7 @@ function initKryDetail() {
         if (rec.values && rec.values.nama) root.querySelector('.kry-name').textContent = rec.values.nama;
         if (rec.values && rec.values.statusKerja) {
             const chip = root.querySelector('.kry-chip');
-            chip.textContent = rec.values.statusKerja;
+            chip.textContent = skMap[rec.values.statusKerja] || rec.values.statusKerja;
             chip.className = 'chip kry-chip ' + kryChipClass(rec.values.statusKerja);
         }
     }
