@@ -8,7 +8,18 @@ function initSidebar() {
     if (!navEl || !qEl) return;
 
     const groups = Array.from(navEl.querySelectorAll('.grp'));
-    const markerOf = (grp) => grp.querySelector(':scope > button i');
+
+    const labelOf = (li) => {
+        const link = li.querySelector('a');
+        if (!link) return '';
+
+        return Array.from(link.childNodes)
+            .filter((node) => node.nodeType === Node.TEXT_NODE)
+            .map((node) => node.textContent)
+            .join('')
+            .trim()
+            .toLowerCase();
+    };
 
     groups.forEach((grp) => {
         grp.dataset.open = grp.classList.contains('open') ? '1' : '0';
@@ -19,7 +30,6 @@ function initSidebar() {
         btn.addEventListener('click', () => {
             const open = grp.classList.toggle('open');
             grp.dataset.open = open ? '1' : '0';
-            markerOf(grp).textContent = open ? '−' : '+';
         });
     });
 
@@ -32,7 +42,7 @@ function initSidebar() {
             let visible = 0;
 
             grp.querySelectorAll('li').forEach((li) => {
-                const show = !filter || groupMatch || li.textContent.toLowerCase().includes(filter);
+                const show = !filter || groupMatch || labelOf(li).includes(filter);
                 li.style.display = show ? '' : 'none';
                 if (show) visible += 1;
             });
@@ -42,7 +52,6 @@ function initSidebar() {
 
             const open = filter ? showGroup : grp.dataset.open === '1';
             grp.classList.toggle('open', open);
-            markerOf(grp).textContent = open ? '−' : '+';
         });
     });
 

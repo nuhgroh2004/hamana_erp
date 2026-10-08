@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@material-symbols/font-400/outlined.css';
 @import './sidebar.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
