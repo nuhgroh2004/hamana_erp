@@ -102,6 +102,7 @@ Route::view('/proyek/tugas-dan-timeline', 'proyek.tugas-dan-timeline.TugasDanTim
 Route::view('/proyek/timesheet', 'proyek.timesheet.Timesheet')->name('menu.proyek.timesheet');
 Route::view('/proyek/biaya-proyek', 'proyek.biaya-proyek.BiayaProyek')->name('menu.proyek.biaya-proyek');
 Route::view('/sdm-dan-payroll/karyawan', 'sdm-dan-payroll.karyawan.Karyawan')->name('menu.sdm-dan-payroll.karyawan');
+Route::view('/sdm-dan-payroll/karyawan/detail', 'sdm-dan-payroll.karyawan.detail.Detail')->name('karyawan.detail');
 Route::view('/sdm-dan-payroll/absensi-dan-shift', 'sdm-dan-payroll.absensi-dan-shift.AbsensiDanShift')->name('menu.sdm-dan-payroll.absensi-dan-shift');
 Route::view('/sdm-dan-payroll/lembur', 'sdm-dan-payroll.lembur.Lembur')->name('menu.sdm-dan-payroll.lembur');
 Route::view('/sdm-dan-payroll/cuti-dan-izin', 'sdm-dan-payroll.cuti-dan-izin.CutiDanIzin')->name('menu.sdm-dan-payroll.cuti-dan-izin');

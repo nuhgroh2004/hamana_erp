@@ -1,8 +1,10 @@
-@props(['crumb' => 'Beranda', 'title' => 'Pilih menu di sidebar'])
+@props(['boxed' => true])
 
 <section class="content">
     <button id="menuBtn" type="button">☰ Menu</button>
-    <div class="crumb" id="crumb">{{ $crumb }}</div>
-    <h1 id="title">{{ $title }}</h1>
-    <div class="box">{{ $slot }}</div>
+    @if ($boxed)
+        <div class="box">{{ $slot }}</div>
+    @else
+        <div class="page">{{ $slot }}</div>
+    @endif
 </section>

@@ -1,0 +1,303 @@
+.kry-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.kry-count,
+.kry-sub {
+    font-size: 12px;
+    color: var(--mut);
+}
+
+.kry-msg {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+}
+
+.kry-msg.err {
+    color: var(--chip-red-ink);
+}
+
+.kry-spacer {
+    flex: 1;
+}
+
+.kry-name {
+    font-weight: 600;
+}
+
+.kry-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+}
+
+.kry-tab {
+    background: none;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    padding: 10px 14px;
+    font: inherit;
+    color: var(--mut);
+    cursor: pointer;
+}
+
+.kry-tab:first-child {
+    padding-left: 16px;
+}
+
+.kry-tab:hover {
+    color: var(--ink);
+}
+
+.kry-tab.on {
+    color: var(--acc);
+    border-bottom-color: var(--acc);
+    font-weight: 600;
+}
+
+.kry-scroll {
+    overflow-x: auto;
+}
+
+.kry-tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.kry-tbl th {
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.kry-tbl td {
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+
+.kry-tbl tbody tr[data-id] {
+    cursor: pointer;
+}
+
+.kry-tbl tbody tr[data-id]:hover {
+    background: rgba(0, 0, 0, .03);
+}
+
+.kry-tbl tbody tr[data-id]:focus {
+    outline: 1px solid var(--acc);
+    outline-offset: -1px;
+}
+
+.kry-tbl tbody tr.sel {
+    background: var(--accbg);
+}
+
+.kry-tbl .c-sel {
+    width: 48px;
+}
+
+.kry-tbl .c-act {
+    width: 1%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.kry-tbl .c-nama {
+    font-weight: 600;
+}
+
+.kry-sec .kry-tbl th:first-child,
+.kry-sec .kry-tbl td:first-child {
+    padding-left: 0;
+}
+
+.kry-sec .kry-tbl th:last-child,
+.kry-sec .kry-tbl td:last-child {
+    padding-right: 0;
+}
+
+.kry-tbl input[type="text"] {
+    font: inherit;
+    color: var(--ink);
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 5px 0;
+    outline: none;
+}
+
+.kry-form.editing .kry-tbl input[type="text"] {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 6px 8px;
+}
+
+.kry-tbl input[type="text"]:focus {
+    border-color: var(--acc);
+}
+
+.kry-empty td {
+    color: var(--mut);
+    font-size: 12px;
+    text-align: center;
+}
+
+.doc-st .doc-sel {
+    display: none;
+    font: inherit;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 6px 8px;
+    outline: none;
+    max-width: 100%;
+}
+
+.kry-form.editing .doc-st .doc-sel {
+    display: inline-block;
+}
+
+.kry-form.editing .doc-st .chip {
+    display: none;
+}
+
+.doc-st .doc-sel:focus {
+    border-color: var(--acc);
+}
+
+#kry input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--acc);
+    cursor: pointer;
+}
+
+.kry-form {
+    padding: 20px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.kry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px 24px;
+}
+
+.fld {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.fld > span {
+    font-size: 12px;
+    color: var(--mut);
+}
+
+.fld input {
+    font: inherit;
+    color: var(--ink);
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 5px 0;
+    outline: none;
+}
+
+.kry-form.editing .fld input {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 7px 9px;
+}
+
+.fld input:focus {
+    border-color: var(--acc);
+}
+
+.fld.wide {
+    grid-column: 1 / -1;
+}
+
+.fld-add-wrap {
+    display: none;
+}
+
+.kry-form.editing .fld-add-wrap {
+    display: block;
+}
+
+.sec-add-wrap {
+    display: none;
+    margin-top: 14px;
+}
+
+.kry-form.editing .sec-add-wrap {
+    display: block;
+}
+
+.fld-keyrow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.fld .fld-key {
+    font-size: 12px;
+    color: var(--mut);
+    height: 18px;
+    padding: 0;
+    border: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.kry-form.editing .fld .fld-key {
+    color: var(--ink);
+    height: 20px;
+    padding: 0 6px;
+    border: 1px solid var(--line);
+}
+
+.fld-del {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex: none;
+    padding: 0;
+    border: 1px solid var(--line);
+    background: var(--side);
+    color: var(--mut);
+    cursor: pointer;
+}
+
+.kry-form.editing .fld-del {
+    display: inline-flex;
+}
+
+.fld-del:hover {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+}
+
+.fld-del .material-symbols-outlined {
+    font-size: 14px;
+}

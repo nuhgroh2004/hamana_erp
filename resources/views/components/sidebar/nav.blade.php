@@ -167,7 +167,7 @@
     <div class="grp{{ request()->is('sdm-dan-payroll/*') ? ' open' : '' }}" data-g="SDM &amp; Payroll">
         <button type="button"><span class="material-symbols-outlined grp-icon">group</span>SDM &amp; Payroll<span class="material-symbols-outlined grp-arrow">expand_more</span></button>
         <ul>
-            <li><a href="{{ url('sdm-dan-payroll/karyawan') }}" class="{{ request()->is('sdm-dan-payroll/karyawan') ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">person</span>Karyawan</a></li>
+            <li><a href="{{ url('sdm-dan-payroll/karyawan') }}" class="{{ request()->is('sdm-dan-payroll/karyawan*') ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">person</span>Karyawan</a></li>
             <li><a href="{{ url('sdm-dan-payroll/absensi-dan-shift') }}" class="{{ request()->is('sdm-dan-payroll/absensi-dan-shift') ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">event_available</span>Absensi &amp; Shift</a></li>
             <li><a href="{{ url('sdm-dan-payroll/lembur') }}" class="{{ request()->is('sdm-dan-payroll/lembur') ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">more_time</span>Lembur</a></li>
             <li><a href="{{ url('sdm-dan-payroll/cuti-dan-izin') }}" class="{{ request()->is('sdm-dan-payroll/cuti-dan-izin') ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">beach_access</span>Cuti &amp; Izin</a></li>
