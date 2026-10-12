@@ -45,5 +45,15 @@ class DatabaseSeeder extends Seeder
                 'dokumen' => $k['dokumen'] ?? [],
             ]);
         }
+
+        $this->call([
+            DepartmentSeeder::class,
+            PositionSeeder::class,
+            RecruitmentStageSeeder::class,
+            RecruitmentRejectionReasonSeeder::class,
+            RecruitmentSourceSeeder::class,
+            RecruitmentEmailTemplateSeeder::class,
+            RecruitmentOnboardingTemplateSeeder::class,
+        ]);
     }
 }
