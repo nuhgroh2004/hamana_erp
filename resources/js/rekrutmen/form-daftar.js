@@ -1,4 +1,4 @@
-import { rkmToast, rkmHttp, rkmReload } from './shared';
+import { rkmToast, rkmHttp, rkmReload, rkmConfirm } from './shared';
 
 const rfNewBtn = document.getElementById('rfNew');
 
@@ -34,8 +34,13 @@ document.querySelectorAll('[data-rf-dup]').forEach((btn) => {
 document.querySelectorAll('[data-rf-del]').forEach((btn) => {
     btn.addEventListener('click', () => {
         const title = btn.dataset.title || '';
-        if (!confirm(`Hapus form "${title}" beserta semua responsnya?`)) return;
-        rkmHttp(btn.dataset.rfDel, {}, 'DELETE').then(() => rkmReload()).catch((e) => rkmToast(e.message || 'Gagal.'));
+        rkmConfirm(`Hapus form "${title}" beserta semua responsnya?`, {
+            title: 'Hapus Form',
+            okText: 'Ya, Hapus',
+        }).then((ok) => {
+            if (!ok) return;
+            rkmHttp(btn.dataset.rfDel, {}, 'DELETE').then(() => rkmReload()).catch((e) => rkmToast(e.message || 'Gagal.'));
+        });
     });
 });
 

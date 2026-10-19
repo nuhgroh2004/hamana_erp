@@ -14,5 +14,6 @@
 </head>
 <body>
     {{ $slot }}
+    <x-rkm-confirm />
 </body>
 </html>

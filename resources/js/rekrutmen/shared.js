@@ -34,6 +34,32 @@ export function rkmToast(text) {
     rkmToastTimer = setTimeout(() => rkmToastEl.classList.remove('on'), 2600);
 }
 
+const rkmCfEl = document.getElementById('rkmConfirm');
+let rkmCfResolve = null;
+
+export function rkmConfirm(message, opts) {
+    if (!rkmCfEl) return Promise.resolve(window.confirm(message));
+    const o = opts || {};
+    rkmCfEl.querySelector('#rkmConfirmTitle').textContent = o.title || 'Konfirmasi';
+    rkmCfEl.querySelector('#rkmConfirmMsg').textContent = message;
+    rkmCfEl.querySelector('[data-rkm-cf-cancel]').textContent = o.cancelText || 'Batal';
+    rkmCfEl.querySelector('[data-rkm-cf-ok]').textContent = o.okText || 'Ya, Hapus';
+    rkmCfEl.classList.add('on');
+    return new Promise((resolve) => { rkmCfResolve = resolve; });
+}
+
+function rkmCfClose(val) {
+    rkmCfEl?.classList.remove('on');
+    if (rkmCfResolve) { rkmCfResolve(val); rkmCfResolve = null; }
+}
+
+if (rkmCfEl) {
+    rkmCfEl.querySelector('[data-rkm-cf-cancel]').addEventListener('click', () => rkmCfClose(false));
+    rkmCfEl.querySelector('[data-rkm-cf-ok]').addEventListener('click', () => rkmCfClose(true));
+    rkmCfEl.addEventListener('click', (e) => { if (e.target === rkmCfEl) rkmCfClose(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && rkmCfEl.classList.contains('on')) rkmCfClose(false); });
+}
+
 document.addEventListener('click', (e) => {
     const t = e.target.closest('[data-toast]');
     if (t) {
@@ -205,14 +231,20 @@ document.addEventListener('click', (e) => {
         e.preventDefault();
         const url = act.dataset.url;
         if (!url) return;
-        if (act.dataset.confirm && !window.confirm(act.dataset.confirm)) return;
-        act.disabled = true;
-        rkmHttp(url, {})
-            .then((data) => rkmReload(data && data.message))
-            .catch((err) => {
-                rkmToast(err.message);
-                act.disabled = false;
-            });
+        const go = () => {
+            act.disabled = true;
+            rkmHttp(url, {})
+                .then((data) => rkmReload(data && data.message))
+                .catch((err) => {
+                    rkmToast(err.message);
+                    act.disabled = false;
+                });
+        };
+        if (act.dataset.confirm) {
+            rkmConfirm(act.dataset.confirm, { title: 'Konfirmasi', okText: 'Ya, Lanjutkan' }).then((ok) => { if (ok) go(); });
+        } else {
+            go();
+        }
         return;
     }
 

@@ -1,4 +1,4 @@
-import { rkmToast, rkmHttp, rkmCsrf } from './shared';
+import { rkmToast, rkmHttp, rkmCsrf, rkmConfirm } from './shared';
 
 const rfbCopy = document.getElementById('rfbCopy');
 if (rfbCopy) {
@@ -13,16 +13,21 @@ if (rfbCopy) {
 const rfbRegen = document.getElementById('rfbRegen');
 if (rfbRegen) {
     rfbRegen.addEventListener('click', () => {
-        if (!confirm('Buat tautan baru? Tautan lama otomatis tidak berlaku.')) return;
-        rkmHttp(rfbRegen.dataset.url).then((d) => {
-            const urlInput = document.getElementById('rfbUrl');
-            const full = d.url || (window.location.origin + '/f/' + d.slug);
-            if (urlInput) urlInput.value = full;
-            if (rfbCopy) rfbCopy.dataset.url = full;
-            const embed = document.getElementById('rfbEmbed');
-            if (embed) embed.value = `<iframe src="${full}" width="100%" height="700" frameborder="0"></iframe>`;
-            rkmToast(d.message || 'Tautan baru dibuat.');
-        }).catch((e) => rkmToast(e.message || 'Gagal.'));
+        rkmConfirm('Buat tautan baru? Tautan lama otomatis tidak berlaku.', {
+            title: 'Buat Tautan Baru',
+            okText: 'Ya, Buat Baru',
+        }).then((ok) => {
+            if (!ok) return;
+            rkmHttp(rfbRegen.dataset.url).then((d) => {
+                const urlInput = document.getElementById('rfbUrl');
+                const full = d.url || (window.location.origin + '/f/' + d.slug);
+                if (urlInput) urlInput.value = full;
+                if (rfbCopy) rfbCopy.dataset.url = full;
+                const embed = document.getElementById('rfbEmbed');
+                if (embed) embed.value = `<iframe src="${full}" width="100%" height="700" frameborder="0"></iframe>`;
+                rkmToast(d.message || 'Tautan baru dibuat.');
+            }).catch((e) => rkmToast(e.message || 'Gagal.'));
+        });
     });
 }
 

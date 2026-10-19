@@ -489,6 +489,61 @@
     display: block;
 }
 
+.rkm-cf {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    display: none;
+    z-index: 40;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.rkm-cf.on {
+    display: flex;
+}
+
+.rkm-cf-b {
+    width: min(420px, 100%);
+    background: var(--side);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--bad);
+}
+
+.rkm-cf-h {
+    padding: 14px 18px 0;
+}
+
+.rkm-cf-h b {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.rkm-cf-m {
+    padding: 6px 18px 0;
+    color: var(--mut);
+    line-height: 1.5;
+}
+
+.rkm-cf-f {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 18px;
+}
+
+.rkm-cf-f .rkm-btn.p {
+    background: #c0392b;
+    border-color: #c0392b;
+}
+
+.rkm-cf-f .rkm-btn.p:hover {
+    opacity: .9;
+    color: #fff;
+}
+
 .rkm-empty {
     padding: 18px;
     text-align: center;
