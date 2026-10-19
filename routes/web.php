@@ -4,6 +4,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\Rekrutmen\CandidateController;
 use App\Http\Controllers\Rekrutmen\DashboardController;
+use App\Http\Controllers\Rekrutmen\FormBuilderController;
+use App\Http\Controllers\Rekrutmen\FormController;
+use App\Http\Controllers\Rekrutmen\FormPreviewController;
+use App\Http\Controllers\Rekrutmen\FormPublicController;
+use App\Http\Controllers\Rekrutmen\FormResponsController;
+use App\Http\Controllers\Rekrutmen\FormShareController;
 use App\Http\Controllers\Rekrutmen\InterviewController;
 use App\Http\Controllers\Rekrutmen\JobPostingController;
 use App\Http\Controllers\Rekrutmen\JobRequestController;
@@ -28,6 +34,14 @@ Route::group([
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [LaravelLocalizationRedirectFilter::class, LaravelLocalizationViewPath::class],
+], function () {
+    Route::get('/f/{slug}', [FormPublicController::class, 'show'])->name('rekrutmen.form.public');
+    Route::post('/f/{slug}', [FormPublicController::class, 'submit'])->name('rekrutmen.form.public.submit');
+});
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -169,6 +183,21 @@ Route::group([
     Route::get('/sdm-dan-payroll/rekrutmen/onboarding', [OnboardingController::class, 'index'])->name('menu.sdm-dan-payroll.rekrutmen.onboarding');
     Route::post('/sdm-dan-payroll/rekrutmen/onboarding/task/{task}/toggle', [OnboardingController::class, 'toggleTask'])->name('rekrutmen.onboarding.toggle');
     Route::get('/sdm-dan-payroll/rekrutmen/laporan', [ReportController::class, 'index'])->name('menu.sdm-dan-payroll.rekrutmen.laporan');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen', [FormController::class, 'index'])->name('menu.sdm-dan-payroll.rekrutmen.form-rekrutmen');
+    Route::post('/sdm-dan-payroll/rekrutmen/form-rekrutmen', [FormController::class, 'store'])->name('rekrutmen.form.store');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/edit', [FormBuilderController::class, 'show'])->name('rekrutmen.form.edit');
+    Route::put('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/edit', [FormBuilderController::class, 'update'])->name('rekrutmen.form.update');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/preview', [FormPreviewController::class, 'show'])->name('rekrutmen.form.preview');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/respons', [FormResponsController::class, 'index'])->name('rekrutmen.form.respons');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/respons/export', [FormResponsController::class, 'export'])->name('rekrutmen.form.export');
+    Route::delete('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/respons', [FormResponsController::class, 'clearResponses'])->name('rekrutmen.form.responses.clear');
+    Route::delete('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/respons/{response}', [FormResponsController::class, 'destroyResponse'])->name('rekrutmen.form.response.destroy');
+    Route::get('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/bagikan', [FormShareController::class, 'show'])->name('rekrutmen.form.bagikan');
+    Route::put('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/bagikan', [FormShareController::class, 'settings'])->name('rekrutmen.form.settings');
+    Route::post('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/toggle', [FormController::class, 'toggle'])->name('rekrutmen.form.toggle');
+    Route::post('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/duplicate', [FormController::class, 'duplicate'])->name('rekrutmen.form.duplicate');
+    Route::post('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}/regenerate', [FormController::class, 'regenerate'])->name('rekrutmen.form.regenerate');
+    Route::delete('/sdm-dan-payroll/rekrutmen/form-rekrutmen/{form}', [FormController::class, 'destroy'])->name('rekrutmen.form.destroy');
     Route::view('/sdm-dan-payroll/pelatihan-dan-sertifikasi-welder', 'sdm-dan-payroll.pelatihan-dan-sertifikasi-welder.PelatihanDanSertifikasiWelder')->name('menu.sdm-dan-payroll.pelatihan-dan-sertifikasi-welder');
     Route::view('/sdm-dan-payroll/penilaian-kinerja', 'sdm-dan-payroll.penilaian-kinerja.PenilaianKinerja')->name('menu.sdm-dan-payroll.penilaian-kinerja');
     Route::view('/k3-dan-lingkungan/insiden-dan-kecelakaan-kerja', 'k3-dan-lingkungan.insiden-dan-kecelakaan-kerja.InsidenDanKecelakaanKerja')->name('menu.k3-dan-lingkungan.insiden-dan-kecelakaan-kerja');

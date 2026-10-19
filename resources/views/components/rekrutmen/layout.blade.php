@@ -8,6 +8,7 @@
                 ['key' => 'dashboard', 'url' => 'sdm-dan-payroll/rekrutmen', 'icon' => 'dashboard', 'label' => __('Dashboard')],
                 ['key' => 'permintaan-tenaga-kerja', 'url' => 'sdm-dan-payroll/rekrutmen/permintaan-tenaga-kerja', 'icon' => 'assignment', 'label' => __('Permintaan Tenaga Kerja')],
                 ['key' => 'lowongan', 'url' => 'sdm-dan-payroll/rekrutmen/lowongan', 'icon' => 'work', 'label' => __('Lowongan')],
+                ['key' => 'form-rekrutmen', 'url' => 'sdm-dan-payroll/rekrutmen/form-rekrutmen', 'icon' => 'dynamic_form', 'label' => __('Form Rekrutmen')],
                 ['key' => 'pipeline-kandidat', 'url' => 'sdm-dan-payroll/rekrutmen/pipeline-kandidat', 'icon' => 'account_tree', 'label' => __('Pipeline Kandidat')],
                 ['key' => 'daftar-kandidat', 'url' => 'sdm-dan-payroll/rekrutmen/daftar-kandidat', 'icon' => 'people', 'label' => __('Daftar Kandidat')],
                 ['key' => 'jadwal-interview', 'url' => 'sdm-dan-payroll/rekrutmen/jadwal-interview', 'icon' => 'event', 'label' => __('Jadwal Interview')],

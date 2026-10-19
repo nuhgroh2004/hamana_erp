@@ -1,0 +1,233 @@
+/* Komponen bersama Form Builder — gaya .sw .tabs .pvw .fm .q .in .lk .fr .ban .ob dari modal */
+
+.rf-sw {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: 0;
+    background: none;
+    padding: 0;
+    font: inherit;
+    color: var(--ink);
+}
+
+.rf-sw i {
+    width: 38px;
+    height: 20px;
+    background: var(--line);
+    position: relative;
+    display: inline-block;
+    flex: none;
+}
+
+.rf-sw i:after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+}
+
+.rf-sw.on i {
+    background: var(--teal);
+}
+
+.rf-sw.on i:after {
+    left: 20px;
+}
+
+.rf-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+    overflow-x: auto;
+}
+
+.rf-tabs a {
+    padding: 8px 18px;
+    cursor: pointer;
+    color: var(--mut);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.rf-tabs a:hover {
+    color: var(--ink);
+}
+
+.rf-tabs a.on {
+    color: var(--acc);
+    border-bottom-color: var(--acc);
+    font-weight: 600;
+}
+
+.rf-hd-act {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.rf-in {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid var(--line);
+    background: var(--side);
+    color: var(--ink);
+    font: inherit;
+    outline: none;
+}
+
+.rf-in:focus {
+    border-color: var(--acc);
+}
+
+textarea.rf-in {
+    min-height: 70px;
+    resize: vertical;
+}
+
+.rf-lb {
+    display: block;
+    color: var(--mut);
+    font-size: 12px;
+    margin: 10px 0 3px;
+}
+
+.rf-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.rf-row > * {
+    flex: 1;
+    min-width: 160px;
+}
+
+.rf-pvw {
+    background: var(--accbg);
+    padding: 24px 12px;
+}
+
+.rf-fm {
+    max-width: 660px;
+    margin: 0 auto;
+    background: var(--side);
+    border: 1px solid var(--line);
+    border-top: 8px solid var(--acc);
+    padding: 22px 24px;
+}
+
+.rf-fm h2 {
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.rf-fm > p {
+    color: var(--mut);
+    margin-bottom: 12px;
+}
+
+.rf-q {
+    margin-top: 18px;
+}
+
+.rf-q > label {
+    font-weight: 500;
+    display: block;
+}
+
+.rf-q > label i {
+    color: #c0392b;
+    font-style: normal;
+}
+
+.rf-q > small {
+    color: var(--mut);
+    display: block;
+}
+
+.rf-q .rf-in {
+    margin-top: 6px;
+}
+
+.rf-q .rf-o {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.rf-er {
+    color: #c0392b;
+    font-size: 12px;
+    min-height: 0;
+}
+
+.rf-fm .rkm-btn {
+    margin-top: 22px;
+}
+
+.rf-ban {
+    background: var(--warn);
+    color: var(--warnt);
+    padding: 7px 12px;
+    max-width: 660px;
+    margin: 0 auto 10px;
+    font-size: 13px;
+}
+
+.rf-lk {
+    display: flex;
+    gap: 8px;
+}
+
+.rf-lk .rf-in {
+    flex: 1;
+}
+
+.rf-fr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.rf-fr em {
+    width: 150px;
+    font-style: normal;
+    color: var(--mut);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rf-fr .rkm-prog {
+    flex: 1;
+    height: 12px;
+}
+
+.rf-fr b {
+    width: 30px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.rf-ob {
+    background: #714b67;
+    color: #fff;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    flex: none;
+}

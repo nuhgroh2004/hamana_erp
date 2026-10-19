@@ -26,7 +26,7 @@ if (rkmEl) {
 const rkmToastEl = document.getElementById('rkmToast');
 let rkmToastTimer = null;
 
-function rkmToast(text) {
+export function rkmToast(text) {
     if (!rkmToastEl) return;
     rkmToastEl.textContent = text;
     rkmToastEl.classList.add('on');
@@ -42,19 +42,19 @@ document.addEventListener('click', (e) => {
     }
 });
 
-function rkmCsrf() {
+export function rkmCsrf() {
     const meta = document.querySelector('meta[name="csrf-token"]');
     return meta ? meta.content : '';
 }
 
-function rkmReload(msg) {
+export function rkmReload(msg) {
     if (msg) rkmToast(msg);
     setTimeout(() => window.location.reload(), 700);
 }
 
-function rkmHttp(url, payload) {
+export function rkmHttp(url, payload, method) {
     const opts = {
-        method: 'POST',
+        method: method || 'POST',
         headers: { Accept: 'application/json', 'X-CSRF-TOKEN': rkmCsrf() },
     };
 

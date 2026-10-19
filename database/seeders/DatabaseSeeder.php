@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(['email' => 'superadmin@hamana.local'], [
+        User::updateOrCreate(['email' => 'admin@local.com'], [
             'name' => 'Super Admin',
-            'password' => 'superadmin123',
+            'password' => '123',
             'role' => 'superadmin',
             'locale' => 'id',
         ]);
@@ -49,11 +49,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DepartmentSeeder::class,
             PositionSeeder::class,
-            RecruitmentStageSeeder::class,
-            RecruitmentRejectionReasonSeeder::class,
-            RecruitmentSourceSeeder::class,
-            RecruitmentEmailTemplateSeeder::class,
-            RecruitmentOnboardingTemplateSeeder::class,
         ]);
     }
 }

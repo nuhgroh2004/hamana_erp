@@ -1,0 +1,11 @@
+.rfb-embed {
+    min-height: 56px;
+    font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.rfb-act {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}

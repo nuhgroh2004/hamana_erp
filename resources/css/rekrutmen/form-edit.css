@@ -1,0 +1,71 @@
+.rf-add {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.rf-add span {
+    color: var(--mut);
+    margin-right: 4px;
+}
+
+.rf-fc {
+    background: var(--side);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--line);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.rf-fc:hover {
+    border-color: var(--teal);
+}
+
+.rf-fc.sel {
+    border-left-color: var(--acc);
+    border-color: var(--acc);
+    cursor: default;
+}
+
+.rf-fc .hd {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.rf-fc .fk {
+    pointer-events: none;
+    color: var(--mut);
+    font-size: 13px;
+}
+
+.rf-fk .ph {
+    border: 1px dashed var(--line);
+    padding: 5px 9px;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.rf-tb {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+}
+
+.rf-tb label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.rf-fc .rf-lb:first-child {
+    margin-top: 0;
+}

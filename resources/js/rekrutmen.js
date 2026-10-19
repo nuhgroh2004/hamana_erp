@@ -2,3 +2,8 @@ import './rekrutmen/shared';
 import './rekrutmen/pipeline';
 import './rekrutmen/daftar-kandidat';
 import './rekrutmen/onboarding';
+import './rekrutmen/form-daftar';
+import './rekrutmen/form-edit';
+import './rekrutmen/form-preview';
+import './rekrutmen/form-respons';
+import './rekrutmen/form-bagikan';

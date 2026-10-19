@@ -9,3 +9,10 @@
 @import './rekrutmen/talent-pool.css';
 @import './rekrutmen/onboarding.css';
 @import './rekrutmen/laporan.css';
+@import './rekrutmen/form.css';
+@import './rekrutmen/form-daftar.css';
+@import './rekrutmen/form-edit.css';
+@import './rekrutmen/form-preview.css';
+@import './rekrutmen/form-respons.css';
+@import './rekrutmen/form-bagikan.css';
+@import './rekrutmen/form-public.css';
