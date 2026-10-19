@@ -1,0 +1,16 @@
+.rkm-p-daftar-kandidat .rkm-tw table {
+    min-width: 900px;
+}
+
+.rkm-p-daftar-kandidat .rkm-name small {
+    color: var(--mut);
+}
+
+.rkm-p-daftar-kandidat .rkm-empty {
+    color: var(--mut);
+    padding: 24px;
+    text-align: center;
+    background: var(--side);
+    border: 1px solid var(--line);
+    margin-bottom: 16px;
+}

@@ -1,0 +1,32 @@
+.rkm-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.rkm-kpi {
+    background: var(--side);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--teal);
+    padding: 12px 14px;
+}
+
+.rkm-kpi small {
+    color: var(--mut);
+    display: block;
+}
+
+.rkm-kpi b {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.rkm-p-dashboard .rkm-fr.wide em {
+    width: 170px;
+    color: var(--ink);
+}
+
+.rkm-p-dashboard .rkm-fr.wide b {
+    width: 46px;
+}

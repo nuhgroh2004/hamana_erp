@@ -1,0 +1,23 @@
+.rkm-ck {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.rkm-ck:last-child {
+    border-bottom: 0;
+}
+
+.rkm-ck input {
+    margin-top: 3px;
+    accent-color: var(--acc);
+}
+
+.rkm-ck.done {
+    color: var(--mut);
+    text-decoration: line-through;
+}

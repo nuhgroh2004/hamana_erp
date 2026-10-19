@@ -33,10 +33,12 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="rkm-main">
+            <div class="rkm-main rkm-p-{{ $active }}">
                 <button type="button" class="rkm-show" id="rkmShow"><span class="material-symbols-outlined">menu</span>{{ __('Menu Rekrutmen') }}</button>
                 {{ $slot }}
             </div>
         </div>
+        <div class="rkm-ov" id="rkmOv"><div class="rkm-dr" id="rkmDr"></div></div>
+        <div class="rkm-toast" id="rkmToast"></div>
     </x-content>
 </x-layouts.app>

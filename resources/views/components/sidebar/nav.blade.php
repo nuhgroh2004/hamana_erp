@@ -182,22 +182,6 @@
             <li><a href="{{ LaravelLocalization::localizeURL('sdm-dan-payroll/penilaian-kinerja') }}" class="{{ Str::is('sdm-dan-payroll/penilaian-kinerja', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">reviews</span>{{ __('Penilaian Kinerja') }}</a></li>
         </ul>
     </div>
-    <div class="grp{{ Str::is('recruitment/*', $navPath) ? ' open' : '' }}" data-g="{{ __('Rekrutmen') }}">
-        <button type="button"><span class="material-symbols-outlined grp-icon">how_to_reg</span>{{ __('Rekrutmen') }}<span class="material-symbols-outlined grp-arrow">expand_more</span></button>
-        <ul>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/dashboard') }}" class="{{ Str::is('recruitment/dashboard', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">space_dashboard</span>{{ __('Dashboard Rekrutmen') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/job-requests') }}" class="{{ Str::is('recruitment/job-requests', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">assignment_add</span>{{ __('Permintaan Tenaga Kerja (MPP)') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/job-postings') }}" class="{{ Str::is('recruitment/job-postings', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">work</span>{{ __('Lowongan') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/pipeline') }}" class="{{ Str::is('recruitment/pipeline', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">view_column</span>{{ __('Pipeline Kandidat') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/candidates') }}" class="{{ Str::is('recruitment/candidates', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">contacts</span>{{ __('Daftar Kandidat') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/interviews') }}" class="{{ Str::is('recruitment/interviews', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">event</span>{{ __('Jadwal Interview') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/offers') }}" class="{{ Str::is('recruitment/offers', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">handshake</span>{{ __('Penawaran Kerja') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/talent-pool') }}" class="{{ Str::is('recruitment/talent-pool', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">star</span>{{ __('Talent Pool') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/onboarding') }}" class="{{ Str::is('recruitment/onboarding', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">checklist</span>{{ __('Onboarding') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/reports') }}" class="{{ Str::is('recruitment/reports', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">query_stats</span>{{ __('Laporan Rekrutmen') }}</a></li>
-            <li><a href="{{ LaravelLocalization::localizeURL('recruitment/settings') }}" class="{{ Str::is('recruitment/settings', $navPath) ? 'on' : '' }}"><span class="material-symbols-outlined menu-icon">tune</span>{{ __('Pengaturan Rekrutmen') }}</a></li>
-        </ul>
-    </div>
     <div class="grp{{ Str::is('k3-dan-lingkungan/*', $navPath) ? ' open' : '' }}" data-g="{{ __('K3 & Lingkungan') }}">
         <button type="button"><span class="material-symbols-outlined grp-icon">health_and_safety</span>{{ __('K3 & Lingkungan') }}<span class="material-symbols-outlined grp-arrow">expand_more</span></button>
         <ul>

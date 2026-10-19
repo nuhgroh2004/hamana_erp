@@ -1,0 +1,56 @@
+.rkm-kb {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    align-items: flex-start;
+    padding-bottom: 8px;
+}
+
+.rkm-kb .rkm-col {
+    flex: 0 0 220px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+}
+
+.rkm-kb .rkm-col h4 {
+    padding: 8px 10px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    background: var(--side);
+}
+
+.rkm-kb .rkm-col h4 span {
+    color: var(--mut);
+}
+
+.rkm-kb .rkm-cs {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 60px;
+}
+
+.rkm-kc {
+    background: var(--side);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--acc);
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.rkm-kc:hover {
+    border-color: var(--teal);
+    border-left-color: var(--teal);
+}
+
+.rkm-kc small {
+    color: var(--mut);
+    display: block;
+}
+
+.rkm-kc.hide {
+    display: none;
+}

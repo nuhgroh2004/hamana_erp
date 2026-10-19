@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rekrutmen — ERP Karoseri</title>
+<style>
+:root{--bg:#f9fafb;--side:#fff;--ink:#212529;--mut:#6c757d;--line:#d8dadd;--acc:#714b67;--accbg:#f1e8ef;--teal:#017e84;--ok:#e3f1e6;--okt:#1e6b34;--warn:#fff1d6;--warnt:#8a5a00;--bad:#fbe3e3;--badt:#a12a2a;--info:#dff0f2;--infot:#0b5f64;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1d21;--side:#262a30;--ink:#e9ecef;--mut:#9aa1a9;--line:#3a3f46;--accbg:#3a2a36;--acc:#b78aab;--ok:#1f3a27;--okt:#8fd1a1;--warn:#43361a;--warnt:#f0c36a;--bad:#442525;--badt:#f0a0a0;--info:#1c3a3d;--infot:#8fd0d4}}
+:root[data-theme="dark"]{--bg:#1b1d21;--side:#262a30;--ink:#e9ecef;--mut:#9aa1a9;--line:#3a3f46;--accbg:#3a2a36;--acc:#b78aab;--ok:#1f3a27;--okt:#8fd1a1;--warn:#43361a;--warnt:#f0c36a;--bad:#442525;--badt:#f0a0a0;--info:#1c3a3d;--infot:#8fd0d4}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 Roboto,"Segoe UI",Helvetica,Arial,sans-serif;display:flex}
+aside{width:260px;flex:none;height:100%;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column}
+.brand{padding:12px 16px;background:#714b67;color:#fff;display:flex;gap:10px;align-items:center}
+.logo{width:30px;height:30px;background:#fff;color:#714b67;display:grid;place-items:center;font-weight:700;border-radius:50%}
+.brand b{font-weight:500;font-size:16px;display:block}.brand small{color:#e6d5e1;font-size:11px}
+nav{flex:1;overflow-y:auto;padding:6px 0}
+.gt{padding:10px 16px 4px;color:var(--acc);font-weight:500;font-size:13px}
+nav a{display:flex;justify-content:space-between;padding:6px 16px 6px 22px;color:var(--mut);cursor:pointer;border-left:3px solid transparent}
+nav a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+nav a.on{color:var(--acc);background:var(--accbg);border-left-color:var(--acc);font-weight:600}
+nav a span{background:var(--acc);color:#fff;font-size:11px;padding:0 6px}
+.foot{padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--mut);font-size:12px}
+button,select,input{font:inherit;color:var(--ink)}
+.btn{border:1px solid var(--line);background:var(--side);padding:5px 12px;cursor:pointer}
+.btn:hover{border-color:var(--teal);color:var(--teal)}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}.btn.p:hover{opacity:.9;color:#fff}
+.btn.d:hover{border-color:#c0392b;color:#c0392b}
+main{flex:1;min-width:0;overflow:auto;padding:24px 28px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.crumb{color:var(--mut);font-size:12px}h1{font-weight:500;font-size:24px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.bar input,.bar select{padding:6px 9px;border:1px solid var(--line);background:var(--side);outline:none}
+.bar input:focus,.bar select:focus{border-color:var(--acc)}.bar input{min-width:220px}
+.card{background:var(--side);border:1px solid var(--line);border-top:3px solid var(--teal);padding:16px;margin-bottom:16px}
+.card h3{font-size:14px;font-weight:500;margin-bottom:10px;color:var(--acc)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--side);border:1px solid var(--line);border-top:3px solid var(--teal);padding:12px 14px}
+.kpi small{color:var(--mut);display:block}.kpi b{font-size:26px;font-weight:500}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tw{overflow-x:auto;background:var(--side);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th{background:var(--bg);text-align:left;font-weight:500;color:var(--mut);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--line)}
+tr.c{cursor:pointer}tr.c:hover td{background:var(--accbg)}
+.tag{display:inline-block;padding:0 7px;font-size:12px;white-space:nowrap}
+.g{background:var(--ok);color:var(--okt)}.y{background:var(--warn);color:var(--warnt)}.r{background:var(--bad);color:var(--badt)}.b{background:var(--info);color:var(--infot)}.n{background:var(--accbg);color:var(--acc)}
+.pg{height:6px;background:var(--line);min-width:80px}.pg i{display:block;height:100%;background:var(--teal)}
+.fr{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:13px}.fr em{width:110px;font-style:normal;color:var(--mut)}.fr .pg{flex:1;height:14px}.fr b{width:30px;text-align:right;font-weight:500}
+.kb{display:flex;gap:10px;overflow-x:auto;align-items:flex-start;padding-bottom:8px}
+.col{flex:0 0 220px;background:var(--bg);border:1px solid var(--line)}
+.col h4{padding:8px 10px;font-weight:500;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;background:var(--side)}
+.col h4 span{color:var(--mut)}.cs{padding:8px;display:flex;flex-direction:column;gap:8px;min-height:60px}
+.kc{background:var(--side);border:1px solid var(--line);border-left:3px solid var(--acc);padding:8px 10px;cursor:pointer}
+.kc:hover{border-color:var(--teal);border-left-color:var(--teal)}.kc small{color:var(--mut);display:block}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:20;justify-content:flex-end}.ov.on{display:flex}
+.dr{width:min(480px,100%);height:100%;background:var(--side);overflow-y:auto;border-left:1px solid var(--line)}
+.dh{background:#714b67;color:#fff;padding:14px 18px;display:flex;justify-content:space-between}.dh b{font-size:17px;font-weight:500}.dh small{color:#e6d5e1;display:block}
+.dh button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer}
+.db{padding:16px 18px}.db h5{font-weight:500;color:var(--acc);margin:16px 0 6px}
+.st{display:flex;margin-bottom:6px}.st i{flex:1;height:6px;background:var(--line);margin-right:2px}.st i.d{background:var(--teal)}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:4px 8px}.kv span{color:var(--mut)}
+.tl{border-left:2px solid var(--line);margin-left:4px;padding-left:12px;font-size:13px}.tl div{margin-bottom:6px}.tl small{color:var(--mut)}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ck{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--line)}
+.toast{position:fixed;bottom:20px;right:20px;background:#212529;color:#fff;padding:9px 16px;display:none;z-index:30}
+#mb{display:none;margin-bottom:12px}
+@media(max-width:800px){aside{position:fixed;z-index:10;left:-270px;transition:left .15s}aside.show{left:0}#mb{display:inline-block}main{padding:16px}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside id="side">
+  <div class="brand"><div class="logo">K</div><div><b>Rekrutmen</b><small>SDM · Karoseri ERP</small></div></div>
+  <nav id="nav"></nav>
+  <div class="foot"><span>HRD · Admin</span><button class="btn" id="th">Tema</button></div>
+</aside>
+<main>
+  <button class="btn" id="mb">☰ Menu</button>
+  <div id="view"></div>
+</main>
+<div class="ov" id="ov"><div class="dr" id="dr"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const ST=['Baru','Screening','Tes Teknis','Interview HR','Interview User','Offering','Hired'];
+const J=[
+['Welder 6G (Pengelasan)','Produksi','Pemalang',6,34,'Aktif','30 Okt 2026','Tinggi'],
+['Fabricator / Fitter','Produksi','Pemalang',8,41,'Aktif','15 Nov 2026','Tinggi'],
+['Operator CNC Plasma','Produksi','Pemalang',2,12,'Aktif','25 Okt 2026','Normal'],
+['Painter / Spray','Finishing','Pemalang',3,9,'Aktif','10 Nov 2026','Normal'],
+['Engineer Desain (AutoCAD)','Engineering','Pemalang',1,18,'Aktif','20 Okt 2026','Tinggi'],
+['QC Inspector (NDT)','Quality','Pemalang',2,7,'Aktif','5 Nov 2026','Normal'],
+['Staf Purchasing','Pembelian','Semarang',1,22,'Ditutup','30 Sep 2026','Normal'],
+['Teknisi Hidrolik','Produksi','Pemalang',2,5,'Draft','—','Normal']];
+const C=[
+['Rizky Pratama','Welder 6G (Pengelasan)',3,'JobStreet',5,'SMK Las',82,'Tegal','Lulus uji las 6G'],
+['Dimas Saputra','Welder 6G (Pengelasan)',4,'Walk-in',7,'SMK Las',88,'Brebes','Sertifikat BNSP'],
+['Agus Setiawan','Welder 6G (Pengelasan)',1,'Referral',3,'SMK Mesin',70,'Pemalang',''],
+['Slamet Riyadi','Fabricator / Fitter',2,'Facebook',4,'SMK Mesin',75,'Pekalongan',''],
+['Fajar Nugroho','Fabricator / Fitter',5,'Referral',6,'D3 Teknik Mesin',85,'Batang','Interview user 12 Okt'],
+['Hendra Wijaya','Fabricator / Fitter',6,'JobStreet',8,'SMK Mesin',90,'Tegal','Offer menunggu jawaban'],
+['Bayu Kurniawan','Operator CNC Plasma',3,'Loker.id',2,'SMK TPM',78,'Pemalang',''],
+['Eko Prasetyo','Painter / Spray',0,'Walk-in',3,'SMA',0,'Pemalang',''],
+['Nanda Putri','Engineer Desain (AutoCAD)',4,'LinkedIn',3,'S1 Teknik Mesin',86,'Semarang','Portofolio rangka deck'],
+['Rina Marlina','Engineer Desain (AutoCAD)',3,'LinkedIn',2,'S1 Teknik Industri',80,'Semarang',''],
+['Yusuf Hidayat','QC Inspector (NDT)',2,'JobStreet',5,'D3 Teknik Material',0,'Cirebon','Punya sertifikat NDT Lv.2'],
+['Tono Sugiarto','Welder 6G (Pengelasan)',7,'Referral',9,'SMK Las',91,'Pemalang','Mulai 1 Nov 2026'],
+['Wahyu Hidayat','Painter / Spray',1,'Facebook',1,'SMA',0,'Tegal',''],
+['Lukman Hakim','Fabricator / Fitter',3,'Walk-in',2,'SMK Mesin',72,'Pemalang',''],
+['Indra Gunawan','Operator CNC Plasma',-1,'Loker.id',1,'SMK TPM',55,'Brebes','Tidak lolos tes teknis']
+].map((c,i)=>({id:i,n:c[0],job:c[1],st:c[2],src:c[3],exp:c[4],edu:c[5],sc:c[6],city:c[7],note:c[8],log:[['Melamar via '+c[3],'1 Okt 2026']]}));
+const sc=c=>c.st<0?'<span class="tag r">Ditolak</span>':`<span class="tag ${c.st>=6?'g':c.st>=5?'y':c.st>=3?'b':'n'}">${ST[c.st]}</span>`;
+const stJ=s=>`<span class="tag ${s=='Aktif'?'g':s=='Draft'?'y':'r'}">${s}</span>`;
+function tbl(h,rows,click){return `<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr class="${click?'c':''}" ${click&&r.id!==undefined?`onclick="open_(${r.id})"`:''}>${r.t.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`}
+const T=(t,id)=>({t,id});
+const head=(c,t,btn='')=>`<div class="top"><div><div class="crumb">Rekrutmen / ${c}</div><h1>${t}</h1></div><div>${btn}</div></div>`;
+const act=C=>C.filter(c=>c.st>=0);
+const V={
+dash(){const a=act(C);const f=ST.map((s,i)=>[s,a.filter(c=>c.st>=i).length]);const m=f[0][1];
+return head('Dashboard','Dashboard Rekrutmen','<button class="btn p" onclick="go(\'job\')">+ Lowongan Baru</button>')+
+`<div class="kpis">${[['Lowongan Aktif',J.filter(j=>j[5]=='Aktif').length],['Total Kandidat',C.length],['Interview Minggu Ini',a.filter(c=>c.st==3||c.st==4).length],['Offer Pending',a.filter(c=>c.st==5).length],['Hired Bulan Ini',a.filter(c=>c.st==6).length],['Rata² Time-to-Hire','24 hari']].map(k=>`<div class="kpi"><small>${k[0]}</small><b>${k[1]}</b></div>`).join('')}</div>
+<div class="grid2"><div class="card"><h3>Funnel Rekrutmen</h3>${f.map(x=>`<div class="fr"><em>${x[0]}</em><div class="pg"><i style="width:${x[1]/m*100}%"></i></div><b>${x[1]}</b></div>`).join('')}</div>
+<div class="card"><h3>Lowongan Prioritas Tinggi</h3>${J.filter(j=>j[7]=='Tinggi').map(j=>`<div class="fr"><em style="width:170px;color:var(--ink)">${j[0]}</em><div class="pg"><i style="width:${Math.min(100,C.filter(c=>c.job==j[0]&&c.st==6).length/j[3]*100)}%"></i></div><b>${C.filter(c=>c.job==j[0]&&c.st==6).length}/${j[3]}</b></div>`).join('')}</div></div>
+<div class="card"><h3>Aktivitas Terbaru</h3><div class="tl"><div>Hendra Wijaya menerima tahap Offering<br><small>Hari ini</small></div><div>Tono Sugiarto — kontrak ditandatangani<br><small>Kemarin</small></div><div>3 kandidat baru untuk Welder 6G<br><small>2 hari lalu</small></div></div></div>`},
+mpp(){const R=[['MPP-0012','Welder 6G','Produksi','4','Ekspansi line car carrier','Disetujui'],['MPP-0013','Fabricator / Fitter','Produksi','8','Penambahan shift','Disetujui'],['MPP-0014','Teknisi Hidrolik','Produksi','2','Pengganti resign','Menunggu'],['MPP-0015','Admin Gudang','Logistik','1','Posisi baru','Ditolak']];
+return head('Permintaan Tenaga Kerja','Permintaan Tenaga Kerja (MPP)','<button class="btn p">+ Permintaan Baru</button>')+tbl(['No','Posisi','Departemen','Jumlah','Alasan','Status'],R.map(r=>T([...r.slice(0,5),`<span class="tag ${r[5]=='Disetujui'?'g':r[5]=='Menunggu'?'y':'r'}">${r[5]}</span>`])))},
+job(){return head('Lowongan','Lowongan Kerja','<button class="btn p" onclick="toast(\'Form lowongan baru dibuka\')">+ Buat Lowongan</button>')+tbl(['Posisi','Departemen','Lokasi','Kuota','Pelamar','Hired','Batas Daftar','Prioritas','Status'],J.map(j=>T([`<b>${j[0]}</b>`,j[1],j[2],j[3],j[4],`${C.filter(c=>c.job==j[0]&&c.st==6).length}/${j[3]}`,j[6],j[7]=='Tinggi'?'<span class="tag y">Tinggi</span>':'Normal',stJ(j[5])])))},
+pipe(){return head('Pipeline','Pipeline Kandidat','<select id="pj" class="btn" onchange="V.pipe2()"><option value="">Semua Posisi</option>'+J.map(j=>`<option>${j[0]}</option>`).join('')+'</select>')+'<div class="kb" id="kb"></div>'},
+pipe2(){const p=$('#pj')?$('#pj').value:'';$('#kb').innerHTML=ST.map((s,i)=>{const l=C.filter(c=>c.st==i&&(!p||c.job==p));return `<div class="col"><h4>${s}<span>${l.length}</span></h4><div class="cs">${l.map(c=>`<div class="kc" onclick="open_(${c.id})"><b>${c.n}</b><small>${c.job}</small><small>${c.exp} thn · ${c.city}</small></div>`).join('')}</div></div>`}).join('')},
+cand(){return head('Kandidat','Daftar Kandidat','<button class="btn p">+ Tambah Kandidat</button>')+`<div class="bar"><input id="cq" placeholder="Cari nama / kota…" oninput="V.cand2()"><select id="cj" onchange="V.cand2()"><option value="">Semua Posisi</option>${J.map(j=>`<option>${j[0]}</option>`).join('')}</select><select id="cs" onchange="V.cand2()"><option value="">Semua Tahap</option>${ST.map((s,i)=>`<option value="${i}">${s}</option>`).join('')}<option value="-1">Ditolak</option></select></div><div id="ct"></div>`},
+cand2(){const q=$('#cq').value.toLowerCase(),j=$('#cj').value,s=$('#cs').value;const l=C.filter(c=>(!q||(c.n+c.city).toLowerCase().includes(q))&&(!j||c.job==j)&&(s===''||c.st==s));
+$('#ct').innerHTML=tbl(['Nama','Posisi','Pendidikan','Pengalaman','Sumber','Skor Tes','Tahap'],l.map(c=>({id:c.id,t:[`<b>${c.n}</b><br><small style="color:var(--mut)">${c.city}</small>`,c.job,c.edu,c.exp+' thn',c.src,c.sc||'—',sc(c)]})),1)+(l.length?'':'<div class="card">Tidak ada kandidat.</div>')},
+intv(){const I=C.filter(c=>c.st==3||c.st==4||c.st==2);const d=['Sen, 12 Okt · 09:00','Sen, 12 Okt · 13:30','Sel, 13 Okt · 10:00','Rab, 14 Okt · 09:00','Kam, 15 Okt · 14:00'];
+return head('Jadwal Interview','Jadwal Interview','<button class="btn p">+ Jadwalkan</button>')+tbl(['Waktu','Kandidat','Posisi','Jenis','Pewawancara','Tempat'],I.map((c,i)=>({id:c.id,t:[d[i%5],`<b>${c.n}</b>`,c.job,c.st==2?'Tes Praktik':c.st==3?'Interview HR':'Interview User',c.st==2?'Kepala Produksi':c.st==3?'Tim HRD':'Manajer Dept.',c.st==2?'Workshop':'Ruang Meeting 1']})),1)},
+offer(){const O=C.filter(c=>c.st>=5);return head('Penawaran Kerja','Penawaran Kerja')+tbl(['Kandidat','Posisi','Gaji Pokok','Tunjangan','Mulai Kerja','Status'],O.map((c,i)=>({id:c.id,t:[`<b>${c.n}</b>`,c.job,'Rp '+(4.2+c.sc/40).toFixed(1)+' jt','Rp 0,8 jt','1 Nov 2026',c.st==6?'<span class="tag g">Diterima</span>':'<span class="tag y">Menunggu Jawaban</span>']})),1)},
+pool(){const P=C.filter(c=>c.st<0||(c.sc>=75&&c.st<5));return head('Talent Pool','Talent Pool')+'<div class="card">Kandidat potensial yang belum dipekerjakan, bisa dihubungi kembali saat ada lowongan baru.</div>'+tbl(['Nama','Keahlian / Posisi','Skor','Kota','Catatan'],P.map(c=>({id:c.id,t:[`<b>${c.n}</b>`,c.job,c.sc||'—',c.city,c.note||'—']})),1)},
+onb(){const H=C.filter(c=>c.st==6);const it=['Tanda tangan kontrak','Kelengkapan dokumen (KTP, KK, ijazah, sertifikat)','Medical check-up','Pendaftaran BPJS','Pengambilan APD & seragam','Induksi K3','Pembuatan akun & absensi','Penempatan & mentor'];
+return head('Onboarding','Onboarding Karyawan Baru')+H.map((c,k)=>`<div class="card"><h3>${c.n} — ${c.job}</h3>${it.map((x,i)=>`<div class="ck"><input type="checkbox" ${i<(k?3:5)?'checked':''}> ${x}</div>`).join('')}</div>`).join('')},
+rep(){const S={};C.forEach(c=>S[c.src]=(S[c.src]||0)+1);const m=Math.max(...Object.values(S));
+return head('Laporan','Laporan Rekrutmen')+`<div class="grid2"><div class="card"><h3>Kandidat per Sumber</h3>${Object.entries(S).map(([k,v])=>`<div class="fr"><em>${k}</em><div class="pg"><i style="width:${v/m*100}%"></i></div><b>${v}</b></div>`).join('')}</div>
+<div class="card"><h3>Kandidat per Tahap</h3>${[...ST,'Ditolak'].map((s,i)=>{const n=C.filter(c=>c.st==(i==7?-1:i)).length;return `<div class="fr"><em>${s}</em><div class="pg"><i style="width:${n/6*100}%"></i></div><b>${n}</b></div>`}).join('')}</div></div>
+<div class="card"><h3>Ringkasan</h3>${tbl(['Metrik','Nilai'],[['Time-to-hire','24 hari'],['Cost-per-hire','Rp 1,8 jt'],['Offer acceptance rate','83%'],['Rasio pelamar : hired','12 : 1']].map(r=>T(r)))}</div>`}
+};
+const M=[['Rekrutmen',[['dash','Dashboard'],['mpp','Permintaan Tenaga Kerja'],['job','Lowongan'],['pipe','Pipeline Kandidat'],['cand','Daftar Kandidat'],['intv','Jadwal Interview'],['offer','Penawaran Kerja'],['pool','Talent Pool'],['onb','Onboarding'],['rep','Laporan']]]];
+let cur='dash';
+function nav(){$('#nav').innerHTML=M.map(g=>`<div class="gt">${g[0]}</div>`+g[1].map(i=>`<a class="${i[0]==cur?'on':''}" onclick="go('${i[0]}')">${i[1]}${i[0]=='cand'?`<span>${C.length}</span>`:''}</a>`).join('')).join('')}
+function go(v){cur=v;$('#view').innerHTML=V[v]();if(V[v+'2'])V[v+'2']();nav();$('#side').classList.remove('show')}
+function open_(id){const c=C[id];$('#dr').innerHTML=`<div class="dh"><div><b>${c.n}</b><small>${c.job}</small></div><button onclick="cl()">×</button></div><div class="db">
+<div class="st">${ST.map((s,i)=>`<i class="${c.st>=i?'d':''}"></i>`).join('')}</div><div>${sc(c)}</div>
+<h5>Profil</h5><div class="kv"><span>Pendidikan</span>${c.edu}<span>Pengalaman</span>${c.exp} tahun<span>Domisili</span>${c.city}<span>Sumber</span>${c.src}<span>Skor tes teknis</span>${c.sc||'Belum ada'}<span>Catatan</span>${c.note||'—'}</div>
+<h5>Dokumen</h5><div class="kv"><span>CV</span>✔ Terlampir<span>KTP / Ijazah</span>✔ Terlampir<span>Sertifikat</span>${/las|Welder/.test(c.job)?'Sertifikat las 6G / BNSP':'—'}</div>
+<h5>Riwayat</h5><div class="tl">${c.log.map(l=>`<div>${l[0]}<br><small>${l[1]}</small></div>`).join('')}</div>
+<div class="act">${c.st>=0&&c.st<6?`<button class="btn p" onclick="mv(${id},1)">Lanjut ke ${ST[c.st+1]}</button>`:''}${c.st>=0&&c.st<6?`<button class="btn" onclick="toast('Jadwal interview dibuat')">Jadwalkan</button><button class="btn d" onclick="mv(${id},-9)">Tolak</button>`:''}${c.st<0?`<button class="btn" onclick="mv(${id},0)">Aktifkan Kembali</button>`:''}</div></div>`;$('#ov').classList.add('on')}
+function cl(){$('#ov').classList.remove('on')}
+function mv(id,d){const c=C[id];if(d==-9)c.st=-1;else if(d==0)c.st=0;else c.st+=1;c.log.push([c.st<0?'Ditolak':'Dipindah ke '+ST[c.st],'Hari ini']);cl();go(cur);toast(c.n+': '+(c.st<0?'ditolak':ST[c.st]))}
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2000)}
+$('#ov').onclick=e=>{if(e.target.id=='ov')cl()};
+$('#mb').onclick=()=>$('#side').classList.toggle('show');
+$('#th').onclick=()=>{const r=document.documentElement;r.dataset.theme=getComputedStyle(r).getPropertyValue('--bg').trim()==='#1b1d21'?'light':'dark'};
+go('dash');
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.rkm-p-lowongan .rkm-tw table {
+    min-width: 960px;
+}
+
+.rkm-p-lowongan .rkm-hire b {
+    color: var(--teal);
+}
