@@ -132,6 +132,15 @@ Route::group([
     Route::view('/sdm-dan-payroll/payroll', 'sdm-dan-payroll.payroll.Payroll')->name('menu.sdm-dan-payroll.payroll');
     Route::view('/sdm-dan-payroll/bpjs-dan-pajak-pph21', 'sdm-dan-payroll.bpjs-dan-pajak-pph21.BPJSDanPajakPPh21')->name('menu.sdm-dan-payroll.bpjs-dan-pajak-pph21');
     Route::view('/sdm-dan-payroll/rekrutmen', 'sdm-dan-payroll.rekrutmen.Rekrutmen')->name('menu.sdm-dan-payroll.rekrutmen');
+    Route::view('/sdm-dan-payroll/rekrutmen/permintaan-tenaga-kerja', 'sdm-dan-payroll.rekrutmen.PermintaanTenagaKerja')->name('menu.sdm-dan-payroll.rekrutmen.permintaan-tenaga-kerja');
+    Route::view('/sdm-dan-payroll/rekrutmen/lowongan', 'sdm-dan-payroll.rekrutmen.Lowongan')->name('menu.sdm-dan-payroll.rekrutmen.lowongan');
+    Route::view('/sdm-dan-payroll/rekrutmen/pipeline-kandidat', 'sdm-dan-payroll.rekrutmen.PipelineKandidat')->name('menu.sdm-dan-payroll.rekrutmen.pipeline-kandidat');
+    Route::view('/sdm-dan-payroll/rekrutmen/daftar-kandidat', 'sdm-dan-payroll.rekrutmen.DaftarKandidat')->name('menu.sdm-dan-payroll.rekrutmen.daftar-kandidat');
+    Route::view('/sdm-dan-payroll/rekrutmen/jadwal-interview', 'sdm-dan-payroll.rekrutmen.JadwalInterview')->name('menu.sdm-dan-payroll.rekrutmen.jadwal-interview');
+    Route::view('/sdm-dan-payroll/rekrutmen/penawaran-kerja', 'sdm-dan-payroll.rekrutmen.PenawaranKerja')->name('menu.sdm-dan-payroll.rekrutmen.penawaran-kerja');
+    Route::view('/sdm-dan-payroll/rekrutmen/talent-pool', 'sdm-dan-payroll.rekrutmen.TalentPool')->name('menu.sdm-dan-payroll.rekrutmen.talent-pool');
+    Route::view('/sdm-dan-payroll/rekrutmen/onboarding', 'sdm-dan-payroll.rekrutmen.Onboarding')->name('menu.sdm-dan-payroll.rekrutmen.onboarding');
+    Route::view('/sdm-dan-payroll/rekrutmen/laporan', 'sdm-dan-payroll.rekrutmen.Laporan')->name('menu.sdm-dan-payroll.rekrutmen.laporan');
     Route::view('/sdm-dan-payroll/pelatihan-dan-sertifikasi-welder', 'sdm-dan-payroll.pelatihan-dan-sertifikasi-welder.PelatihanDanSertifikasiWelder')->name('menu.sdm-dan-payroll.pelatihan-dan-sertifikasi-welder');
     Route::view('/sdm-dan-payroll/penilaian-kinerja', 'sdm-dan-payroll.penilaian-kinerja.PenilaianKinerja')->name('menu.sdm-dan-payroll.penilaian-kinerja');
     Route::view('/k3-dan-lingkungan/insiden-dan-kecelakaan-kerja', 'k3-dan-lingkungan.insiden-dan-kecelakaan-kerja.InsidenDanKecelakaanKerja')->name('menu.k3-dan-lingkungan.insiden-dan-kecelakaan-kerja');

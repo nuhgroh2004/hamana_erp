@@ -281,7 +281,6 @@ nav::-webkit-scrollbar {
 .box {
     background: var(--side);
     border: 1px solid var(--line);
-    border-top: 3px solid var(--teal);
     padding: 48px 24px;
     text-align: center;
     color: var(--mut);
@@ -291,7 +290,6 @@ nav::-webkit-scrollbar {
 .page {
     background: var(--side);
     border: 1px solid var(--line);
-    border-top: 3px solid var(--teal);
     flex: 1;
     min-height: 0;
     text-align: left;
